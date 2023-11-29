@@ -1,15 +1,15 @@
-import React,{useState,useEffect} from 'react'
-import logo from '../Images/Logo.png'
-import Props4 from './Props4'
+import React from 'react'
+import {MdArrowBackIos} from 'react-icons/md'
+import air from '../Images/pic.jfif'
 import axios from 'axios'
+import Props4 from './Props4'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
-    // const [user, setuser] = useState(JSON.parse(localStorage.getItem("store")) || [])
+const Contacts = () => {
     const endpoint = "http://localhost:5002/airtaxy/signin"
     const navigate=useNavigate()
 
@@ -47,30 +47,53 @@ const Login = () => {
     const forget=()=>{
         navigate('/forgetpassword')
     }
-   
   return (
     <>
-        <div className="container-fluid">
-            <div className='signup'>
-                <div className='sign-up w-100 d-flex justify-content-center align-items-center'>
-                    <img className='img-fluid text-center' src={logo} alt="" />
+       <div>
+            <div className='d-flex seat-up'>
+                <div className='con-bck ms-5 mt-1'>
+                            <div className='con-bck1'>
+                                <div className='con-bck2'>
+                                    <MdArrowBackIos/>
+                                </div>
+                            </div>
                 </div>
+                <div className='flight-d mx-auto d-flex align-items-center'>Personal info</div>
             </div>
-            <br />
-            <br />
-            <div className='container sign-down'>
-                <p className='sign1'>Login up</p>
+            <div>
+                <div className='d-flex align-items-center justify-content-center mt-4'><img className='air' src={air} alt="" /></div>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <div className='email-div'>
-                            <label className='email' htmlFor="">Email</label>
+                            <label className='email-con' htmlFor="">Name</label>
                             <br />
                             <div className='inputs'>
                                 <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
                             </div>
                         </div>
                         <div className='email-div'>
-                            <label className='email' htmlFor="">Password</label>
+                            <label className='email-con' htmlFor="">Address</label>
+                            <br />
+                            <div className='inputs'>
+                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
+                            </div>
+                        </div>
+                        <div className='email-div'>
+                            <label className='email-con' htmlFor="">Passport</label>
+                            <br />
+                            <div className='inputs'>
+                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
+                            </div>
+                        </div>
+                        <div className='email-div'>
+                            <label className='email-con' htmlFor="">DOB</label>
+                            <br />
+                            <div className='inputs'>
+                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="date" name="password" onChange={handleChange} onBlur={handleBlur} />
+                            </div>
+                        </div>
+                        <div className='email-div'>
+                            <label className='email-con' htmlFor="">Country</label>
                             <br />
                             <div className='inputs'>
                                 <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
@@ -82,11 +105,10 @@ const Login = () => {
                         <ToastContainer />
                     </div>
                 </form>
-                <p className='text-white text-end'onClick={forget}>Forget Password?</p>
             </div>
-        </div>  
+        </div> 
     </>
   )
 }
 
-export default Login
+export default Contacts

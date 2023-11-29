@@ -13,6 +13,8 @@ import ResetPassword from "./COMPONENTS/ResetPassword"
 import Bookflight from "./COMPONENTS/Bookflight"
 import Admin from "./COMPONENTS/Admin"
 import Details from "./COMPONENTS/Details"
+import ChooseSeat from "./COMPONENTS/ChooseSeat"
+import Contacts from "./COMPONENTS/Contacts"
 
 
 
@@ -33,7 +35,9 @@ function App() {
         <Route path="/home" element={<HomePage/>} />
         <Route path="/book" element={<Bookflight/>} />
         <Route path="/admin1" element={<Admin/>} />
-        <Route path="/flightdetails" element={<Details/>}/>
+        <Route path="/flightdetails/:to/:from/:classes" element={<Details/>}/>
+        <Route path="/seat" element={<ChooseSeat/>} />
+        <Route path="/contact" element={<Contacts/>}/>
       </Routes>
     </>
   )

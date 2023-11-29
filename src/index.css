@@ -333,6 +333,9 @@
     color: white;
     font-size: 40px;
 }
+.sections{
+    background-color: rgba(11, 11, 11, 1);;
+}
 .div-cir{
     width: 100%;
     border-top-right-radius: 50%;
@@ -410,11 +413,12 @@
       padding: 5px;
 }
 .flight-div{
-    background-color: red;
+    /* background-color: red; */
     position: absolute;
     top: 170px;
     width: 100%;
-    height: 650px;
+    height: 540px;
+    padding: 10px;
 }
 .btn-bgd, .btn-bgd1, .btn-bgd2{
     background: linear-gradient(to right, #4612B6, #12B6A2);
@@ -433,6 +437,8 @@
     display: flex;
     justify-content:center ;
     align-items: center;
+    padding: 10px;
+    border: 0;
 }
 .bdg-p, .bdg-p1, .bdg-p2{
     font-family: Inter;
@@ -453,6 +459,8 @@
     display: flex;
     justify-content:center ;
     align-items: center;
+    padding: 10px;
+    border: 0;
 }
 .btn-flights{
     display: flex;
@@ -463,7 +471,8 @@
 }
 .frm-div{
     background-color: #FFFFFF;
-    width: 400px;
+    /* width: 400px; */
+    width: 350px;
     height: 60px;
     display: flex;
     padding: 5px;
@@ -472,7 +481,7 @@
     border-radius: 10px;
 }
 .inp-frm{
-    width: 350px;
+    width: 50%;
     height: 30px;
     border: 0;
     outline: none;
@@ -490,6 +499,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
 }
 .done-btn{
     font-family: Caveat;
@@ -530,6 +540,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
         height: 66px;
         border-radius: 10px;
         border: 0;
+        display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .con-btn{
     display: flex;
@@ -547,8 +560,199 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     color: transparent;
     width: 300px;
 }
+.don{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.plane-lg{
+    color: #12B6A2;
+}
 .details-up{
     background-color: rgba(11, 11, 11, 1);
     height: 80px;
     border-radius: 0px 0px 15px 15px;
+}
+.seat-up{
+    background-color: rgba(11, 11, 11, 1);
+    height: 70px;
+    border-radius: 0px 0px 15px 15px;
+}
+.con-bck{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background: linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.con-bck1{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background: rgba(11, 11, 11, 1);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+.con-bck2{
+    /* background: linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%); */
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* color: transparent; */
+    font-size: 24px;
+    -webkiit-text-color:transparent;
+    background: -webkit-linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%);
+    /* background: -moz-linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%); */
+    -moz-background-clip: text
+    /* -webkit-background-clip: text; */
+}
+.flight-d{
+    font-family: Caveat;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+}
+.details{
+    width: 710px;
+    height: 500px;
+    padding: 10px;
+    border-top: 5px solid #12B6A2 ;
+    border-bottom: 5px solid #4612B6;
+    border-left: 5px solid rgba(11, 11, 11, 1);
+    border-right: 5px solid rgba(11, 11, 11, 1);
+    border-radius: 0px 80px 40px 0px;
+    background: linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%);
+}
+.logo-bg{
+    width: 180px;
+    height: 60px;
+    border-radius: 15px;
+    background: rgba(11, 11, 11, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.move-log{
+    /* font-size: 30px; */
+    width: 120px;
+}
+.seat{
+    width: 95%;
+    height: 500px;
+    background-color: rgba(11, 11, 11, 0.189);
+    border-radius: 280px 280px 0px 0px;
+    margin: 0 auto;
+    margin-top: 30px;
+    position: relative;
+    /* display: flex;
+    justify-content: center;
+    justify-content: center; */
+    /* margin-left: 30px; */
+}
+.arrow{
+    display: flex;
+    justify-content: space-between;
+}
+.from{
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+.to{
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+.sm-circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    /* background-color: #909090; */
+    background: linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%);
+}
+.sm-long{
+    width: 220px;
+    height: 4px;
+    background-color: rgba(11, 11, 11, 1);
+}
+.clas{
+    background: linear-gradient(99.49deg, #4612B6 -3.68%, #12B6A2 76.33%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent ;
+}
+.clas1{
+    /* background-color: #FFFFFF; */
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Caveat;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.date, .time{
+    background-color: #FFFFFF;
+    border: 2px solid #909090;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    border-radius: 10px;
+}
+.date1, .time1{
+    font-family: Caveat;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.div-one{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    /* gap: 10px; */
+}
+.div-two, .div-three, .div-four{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 30px;
+}
+.one{
+    border: none;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0px 0px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+.div-join{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 28px;
+    /* margin-top: 40px; */
+    position: absolute;
+    top: 105px;
+    right: 3px;
+    width: 100%;
+}
+.email-con{
+    font-family: Caveat;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #909090;
 }

@@ -7,10 +7,10 @@ import Props1 from './Props1';
 import Props2 from './Props2';
 import Props3 from './Props3';
 const Onboarding1 = () => {
-    // const navigate = useNavigate()
-    // setTimeout(() => {
-    //     navigate('/onboard2')
-    // }, 3000);
+    const navigate = useNavigate()
+    setTimeout(() => {
+        navigate('/onboard2')
+    }, 3000);
     const percentage = 20;
     const bb = '#4612B6'
     return (

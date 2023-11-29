@@ -8,9 +8,10 @@ import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchingsuccessful, fetchingPost, fetcingFailed } from './Redux/Slice'
 import { hotelImages } from './Service/Hotelimg'
-
+import { Link, useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
+    const navigate=useNavigate()
     const dispatch = useDispatch()
     const {allpost, isfetching, fetcherror,isHotel,allHotel,Hotelerror} = useSelector((state)=> state.airway)
     console.log(allpost);
@@ -18,8 +19,35 @@ const HomePage = () => {
     console.log(isfetching);
     const [img1, setimg1] = useState([])
     const [hotelimage, sethotelimage] = useState([])
+    const [email, setemail] = useState('')
+    const endpoints = "http://localhost:5002/airtaxy/homepage"
     const endpoint = "http://localhost:5002/airtaxy/admin/getimage"
     const endpoint1 = "http://localhost:5002/airtaxy/admin/hotelimage"
+    const endpoint2 = "http://localhost:5002/airtaxy/token"
+    let informs = JSON.parse(localStorage.getItem("userinfo"))
+    // console.log(informs);
+    // console.log(informs.email);
+    useEffect(() => {
+        const token=localStorage.token
+        axios.get(endpoints, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        }).then((response)=>{
+            console.log(response)
+            console.log(response.data.token);
+            // setemail(response.data.email)
+            // const seki=setemail !== informs.email
+            if ( !token) {
+                navigate("/login")
+            }
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }, [])
+    
     useEffect(() => {
         axios.get(endpoint).then((response)=>{
             console.log(response.message)
@@ -61,15 +89,63 @@ const HomePage = () => {
             }
         })
     }
+    const logout =()=>{
+        localStorage.removeItem("token")
+        navigate("/login")
+    }
     
   return (
     <>
-        <div className='container-fluid'>
+        <div>
             <div className='container-fluid home-up'>
                     <div><img className='air' src={air} alt="" /></div>
                     <div><img src={logo} alt="" /></div>
                     {/* <HiMenuAlt1/> */}
-                    <HiMenuAlt1 className='icon1'/>
+                    <div>
+                        <HiMenuAlt1 className='icon1 navbar-toggler' type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"/>
+                        <span className="navbar-toggler-icon"></span>
+                        <div className="offcanvas offcanvas-end text-white sections" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                            <div className="offcanvas-header">
+                                <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                                    <img src={logo} alt="" />
+                                </h5>
+                                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div className="offcanvas-body">
+                                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li className="nav-item">
+                                    <Link className="nav-link active" aria-current="page" to='/home'>Home</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link"  to='/book'>Book Flight</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link"  to=''>Book Hotel</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link"  to=''>Go on vacation</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link"  to='/login' onClick={logout}>Log Out</Link>
+                                </li>
+                                {/* <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider"/>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </li> */}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
             <div className='container d-flex div-inp'>
                 <div className='div-inp2'>
@@ -120,7 +196,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        {/* </div> */}
     </>
   )
 }

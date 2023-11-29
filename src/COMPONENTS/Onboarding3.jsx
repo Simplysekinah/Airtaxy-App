@@ -1,6 +1,6 @@
 import React from 'react'
 import onboard3 from '../Images/air3.png'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Props1 from './Props1';
@@ -8,10 +8,10 @@ import Props3 from './Props3';
 import Props2 from './Props2';
 
 const Onboarding3 = () => {
-  // const navigate = useNavigate()
-  //   setTimeout(() => {
-  //       navigate('/onboard4')
-  //   }, 3000);
+  const navigate = useNavigate()
+    setTimeout(() => {
+        navigate('/onboard4')
+    }, 3000);
   const percentage = 100;
     const bb = '#4612B6'
   return (

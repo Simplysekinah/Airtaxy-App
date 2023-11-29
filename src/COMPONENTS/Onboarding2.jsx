@@ -8,10 +8,10 @@ import Props3 from './Props3';
 import Props1 from './Props1';
 
 const Onboarding2 = () => {
-  // const navigate = useNavigate()
-  //   setTimeout(() => {
-  //       navigate('/onboard3')
-  //   }, 3000);
+  const navigate = useNavigate()
+    setTimeout(() => {
+        navigate('/onboard3')
+    }, 3000);
   const percentage = 60
   return (
     <>
