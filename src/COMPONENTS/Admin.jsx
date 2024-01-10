@@ -21,10 +21,10 @@ const Admin = () => {
     const [seat, setseat] = useState('')
     const [seate, setseate] = useState('')
     const [seatf, setseatf] = useState('')
-    const endpoint = "http://localhost:5002/airtaxy/admin"
-    const endpoints = "http://localhost:5002/airtaxy/admin/getimage"
-    const endpoint1 = "http://localhost:5002/airtaxy/admin/hotel"
-    const endpoint2 = "http://localhost:5002/airtaxy/admin/getimage"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/admin"
+    const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/getimage"
+    const endpoint1 = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/hotel"
+    const endpoint2 = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/getimage"
 
 
     const pickFile = (e) => {

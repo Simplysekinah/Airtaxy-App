@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 const ResetPassword = () => {
     const [password, setpassword] = useState('')
     const [Confirm, setConfirm] = useState('')
-    const endpoint = "http://localhost:5002/airtaxy/reset"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/reset"
     const navigate=useNavigate()
 
     const details ={

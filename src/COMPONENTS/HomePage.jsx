@@ -20,10 +20,10 @@ const HomePage = () => {
     const [img1, setimg1] = useState([])
     const [hotelimage, sethotelimage] = useState([])
     const [email, setemail] = useState('')
-    const endpoints = "http://localhost:5002/airtaxy/homepage"
-    const endpoint = "http://localhost:5002/airtaxy/admin/getimage"
-    const endpoint1 = "http://localhost:5002/airtaxy/admin/hotelimage"
-    const endpoint2 = "http://localhost:5002/airtaxy/token"
+    const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/homepage"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/getimage"
+    const endpoint1 = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/hotelimage"
+    const endpoint2 = "https://airtaxy-app-backend.onrender.com/airtaxy/token"
     let informs = JSON.parse(localStorage.getItem("userinfo"))
     // console.log(informs);
     // console.log(informs.email);

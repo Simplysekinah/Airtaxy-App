@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
     // const [user, setuser] = useState(JSON.parse(localStorage.getItem("store")) || [])
-    const endpoint = "http://localhost:5002/airtaxy/signin"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/signin"
     const navigate=useNavigate()
 
     const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik({

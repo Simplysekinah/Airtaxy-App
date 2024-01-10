@@ -8,7 +8,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 
 const VerifyPassword = () => {
-    const endpoint = "http://localhost:5002/airtaxy/verify"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/verify"
     const navigate = useNavigate()
     const [otp, setotp] = useState(['', '', '', ''])
     const inputRef = useRef([null, null, null, null])

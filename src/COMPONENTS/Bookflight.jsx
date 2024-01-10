@@ -17,7 +17,7 @@ const Bookflight = () => {
   const [flights, setflights] = useState(JSON.parse(localStorage.getItem('flightss')) || [])
   const email = localStorage.getItem("email");
   const booked = { from, to, dates, passenger, classes }
-  const endpoint = "http://localhost:5002/airtaxy/bookflight"
+  const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/bookflight"
   const token = localStorage.getItem("token")
   const loc = {
     to: to,

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { fetchingHotel,hotelsuccessful,Hotelfailed } from '../Redux/Slice'
 
 export const hotelImages = (dispatch) => {
-    const endpoint1 = "http://localhost:5002/airtaxy/admin/hotelimage"
+    const endpoint1 = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/hotelimage"
     axios.get(endpoint1).then((response) => {
         console.log(response.data.message)
         console.log(response.data.images)

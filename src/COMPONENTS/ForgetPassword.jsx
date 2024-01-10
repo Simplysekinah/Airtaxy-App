@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 const ForgetPassword = () => {
     const getuser =JSON.parse(localStorage.getItem("userinfo"))
     // JSON.parse(localStorage.getItem("email"))
-    const endpoint = "http://localhost:5002/airtaxy/forget"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/forget"
     const navigate=useNavigate()
 
     const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik({

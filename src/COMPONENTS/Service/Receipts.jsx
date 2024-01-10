@@ -5,7 +5,7 @@ import { fetchingFlight, flightFetched,fetchedError } from '../Redux/FlightBookS
 
 export const receipts = (dispatch) =>{
     const token = localStorage.token
-    const endpoint = "http://localhost:5002/airtaxy/details"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/details"
 
     axios.get(endpoint, {
         headers: {

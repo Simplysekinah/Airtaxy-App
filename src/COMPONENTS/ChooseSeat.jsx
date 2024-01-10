@@ -14,8 +14,8 @@ const ChooseSeat = () => {
   const token = localStorage.token
   const navigate = useNavigate()
   // console.log(token);
-  const endpoints = "http://localhost:5002/airtaxy/seatnumber"
-  const endpoint = "http://localhost:5002/airtaxy/getflight"
+  const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/seatnumber"
+  const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/getflight"
   
   useEffect(() => {
     axios.get(endpoint).then((response)=>{

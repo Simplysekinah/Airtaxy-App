@@ -20,8 +20,8 @@ const Contacts = () => {
     // console.log(name,address,passport,dob,country);
     const token = localStorage.token
 
-    const endpoints = "http://localhost:5002/airtaxy/getuser"
-    const endpoint = "http://localhost:5002/airtaxy/personalinformation"
+    const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/getuser"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/personalinformation"
   
     useEffect(() => {
         axios.get(endpoints).then((response)=>{

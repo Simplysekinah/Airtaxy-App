@@ -13,7 +13,7 @@ const Signup = () => {
     const [password, setpassword] = useState('')
     const [user, setuser] = useState('')
     const navigate = useNavigate()
-    const endpoint = "http://localhost:5002/airtaxy/signup"
+    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/signup"
 
    
 

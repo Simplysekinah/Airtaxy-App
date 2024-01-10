@@ -21,8 +21,8 @@ const Details = () => {
     console.log(allBooked);
     const{ Bookingflight, Booked, Bookingerror}= useSelector((state) => state.Check)
     console.log(Booked);
-    // const endpoint = "http://localhost:5002/airtaxy/details"
-    const endpoints = "http://localhost:5002/airtaxy/deleteflight"
+    // const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/details"
+    const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/deleteflight"
     const token = localStorage.token
     console.log(token);
 
