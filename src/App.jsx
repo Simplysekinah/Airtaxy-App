@@ -15,6 +15,8 @@ import Admin from "./COMPONENTS/Admin"
 import Details from "./COMPONENTS/Details"
 import ChooseSeat from "./COMPONENTS/ChooseSeat"
 import Contacts from "./COMPONENTS/Contacts"
+import Payment from "./COMPONENTS/Payment"
+import Boarding from "./COMPONENTS/Boarding"
 
 
 
@@ -38,6 +40,8 @@ function App() {
         <Route path="/flightdetails/:to/:from/:classes" element={<Details/>}/>
         <Route path="/seat" element={<ChooseSeat/>} />
         <Route path="/contact" element={<Contacts/>}/>
+        <Route path="/payment" element={<Payment/>} />
+        <Route path="/boardingpass" element={<Boarding/>} />
       </Routes>
     </>
   )

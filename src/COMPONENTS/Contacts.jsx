@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {MdArrowBackIos} from 'react-icons/md'
 import air from '../Images/pic.jfif'
 import axios from 'axios'
@@ -10,43 +10,44 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
 
 const Contacts = () => {
-    const endpoint = "http://localhost:5002/airtaxy/signin"
     const navigate=useNavigate()
+    const [name, setname] = useState('')
+    const [address, setaddress] = useState('')
+    const [passport, setpassport] = useState('')
+    const [dob, setdob] = useState('')
+    const [country, setcountry] = useState('')
+    const [_id, set_id] = useState('')
+    // console.log(name,address,passport,dob,country);
+    const token = localStorage.token
 
-    const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik({
-        initialValues: {
-            email: '',
-            password: ''
-        },
-        validationSchema: yup.object().shape({
-            email: yup.string().email("must be a valid email").required("email is required"),
-            password: yup.string().min(6, "password is too short").required("password is required")
-        }),
+    const endpoints = "http://localhost:5002/airtaxy/getuser"
+    const endpoint = "http://localhost:5002/airtaxy/personalinformation"
+  
+    useEffect(() => {
+        axios.get(endpoints).then((response)=>{
+          console.log(response.data.get._id);
+          set_id(response.data.get._id)
+        }).catch((error)=>{
+          console.log(error);
+        })
+      }, [])
 
-        onSubmit: async(values) => {
-            if (values) {
-                 axios.post(endpoint, values).then((response) => {
-                    console.log(values);
-                    console.log(response)
-                    if(response.data.message){
-                        localStorage.token = response.data.token
-                        toast.success(response.data.message)
-                        localStorage.setItem("userinfo",JSON.stringify(response.data.user) )
-                        setTimeout(() => {
-                            navigate('/home')
-                        }, 3000);
-                    }
-                }).catch((error) => {
-                    console.log(error)
-                    toast.error(error.response.data.message)
-                })
+      const confirm = ()=>{
+        console.log(token);
+        axios.post(endpoint,
+            {name,address,passport,dob,country,_id},
+            {
+                headers: {
+                    "Authorization": `bearer ${token}`,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
             }
-        }
-    })
-
-    const forget=()=>{
-        navigate('/forgetpassword')
-    }
+            ).then((response)=>{
+            console.log(response);
+            navigate('/payment')
+        })
+      }
   return (
     <>
        <div>
@@ -60,51 +61,49 @@ const Contacts = () => {
                 </div>
                 <div className='flight-d mx-auto d-flex align-items-center'>Personal info</div>
             </div>
-            <div>
+            <div className='p-4'>
                 <div className='d-flex align-items-center justify-content-center mt-4'><img className='air' src={air} alt="" /></div>
-                <form onSubmit={handleSubmit}>
                     <div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">Name</label>
                             <br />
                             <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
+                                <input className= 'input1' type="text" onChange={(e)=>setname(e.target.value)}  />
                             </div>
                         </div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">Address</label>
                             <br />
                             <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
+                                <input className='input1' type="text" onChange={(e)=>setaddress(e.target.value)} />
                             </div>
                         </div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">Passport</label>
                             <br />
                             <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
+                                <input className='input1' type="text" onChange={(e)=>setpassport(e.target.value)} />
                             </div>
                         </div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">DOB</label>
                             <br />
                             <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="date" name="password" onChange={handleChange} onBlur={handleBlur} />
+                                <input className= 'input1' type="date" onChange={(e)=>setdob(e.target.value)} />
                             </div>
                         </div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">Country</label>
                             <br />
                             <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
+                                <input className= 'input1' type="text" onChange={(e)=>setcountry(e.target.value)} />
                             </div>
                         </div>
                         <div className='signup-button'>
-                            <Props4 gradient='Login up' gradient1='signup-clk' pass='Submit'/>
+                            <Props4 gradient='Confirm' gradient1='signup-clk' pass='Submit' onClick={confirm}/>
                         </div>
                         <ToastContainer />
                     </div>
-                </form>
             </div>
         </div> 
     </>

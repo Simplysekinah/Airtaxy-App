@@ -3,18 +3,26 @@ import { MdArrowBackIos } from 'react-icons/md'
 import logo from '../Images/Logo.png'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { Onbooking, Bookingsuccessful, Bookingerror } from './Redux/BookedSlice'
-import { useParams } from 'react-router-dom'
+// import { Onbooking, Bookingsuccessful, Bookingerror } from './Redux/BookedSlice'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+// import { fetchingFlight, flightFetched, fetchedError } from './Redux/FlightBookSlice'
+import { receipts } from './Service/Receipts'
 
 const Details = () => {
+    const navigate = useNavigate()
+    const [upid, setupid] = useState('')
     const dispatch = useDispatch()
     const [sum, setsum] = useState([])
+    const [check, setcheck] = useState({})
     const flight = JSON.parse(localStorage.getItem('flightss'))
     console.log(flight);
     const { allBooked, isBooking, bookError } = useSelector((state) => state.book)
     console.log(allBooked);
-    const endpoint = "http://localhost:5002/airtaxy/details"
-    const endpoints = "http://localhost:5002/airtaxy/bookflight"
+    const{ Bookingflight, Booked, Bookingerror}= useSelector((state) => state.Check)
+    console.log(Booked);
+    // const endpoint = "http://localhost:5002/airtaxy/details"
+    const endpoints = "http://localhost:5002/airtaxy/deleteflight"
     const token = localStorage.token
     console.log(token);
 
@@ -25,39 +33,69 @@ const Details = () => {
     const classes = id.classes.charAt(0).toUpperCase() + id.classes.slice(1)
     console.log(from, to, classes);
 
-    axios.post(endpoints, { to: to, from: from, classes: { classes } }
-    ).then((res) => {
-        console.log(res.data);
-    }).catch((err) => {
-        console.log(err);
-    })
-    // }, [])
-
     useEffect(() => {
         console.log(allBooked);
     }, [allBooked])
 
-    
     useEffect(() => {
-        console.log(token)
-        axios.get(endpoint, {
+      console.log(Booked)
+    }, [Booked])
+
+    useEffect(() => {
+        receipts(dispatch)
+    }, [])
+    
+    
+    // useEffect(() => {
+    //     console.log(token)
+    //     axios.get(endpoint, {
+    //         headers: {
+    //             "Authorization": `bearer ${token}`,
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     }
+    //     ).then((response) => {
+    //         console.log(response);
+    //         dispatch(Bookingsuccessful(response.data.summary))
+    //         // setcheck(response.data.summaryCheck)
+    //         dispatch(flightFetched(response.data.summaryCheck))
+    //         const bookclass = response.data.summary.classes
+    //         const matchingclass= response.data.summaryCheck.classes.find((element)=>element.class === bookclass)
+    //         if(matchingclass){
+    //             console.log(matchingclass);
+    //             dispatch(flightFetched(matchingclass))
+    //         }else{
+    //             console.log('matching not found');
+    //         }
+    //     }).catch((error) => {
+    //         console.log(error)
+    //     })
+    // }, [])
+    const cancel = (element)=>{
+        console.log(element._id);
+        setupid(element._id);
+        console.log(upid);
+        axios.post(endpoints,
+            {upid},
+            {
             headers: {
                 "Authorization": `bearer ${token}`,
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             }
-        }
-        ).then((response) => {
-            console.log(response);
-            dispatch(Bookingsuccessful(response.data.summary))
-            console.log(dispatch);
-        }).catch((error) => {
+        }).then((response)=>{
+            console.log(response)
+            toast.success(response.data.message)
+            navigate('/book')
+        }).catch((error)=>{
             console.log(error)
         })
-    }, [])
-    
+    }
 
-
+    const confirm = ()=>{
+        navigate('/seat')
+    }
 
     return (
         <>
@@ -83,41 +121,51 @@ const Details = () => {
                         </div>
                         <hr />
                         <div>
-                            {allBooked &&
-                                allBooked.map((element, index) => (
-                                    <div className='' key={index}>
+                            {/* {allBooked &&
+                                allBooked.map((element, index) => ( */}
+                                    <div className='' >
                                         <div className='arrow'>
-                                            <div className='from'>{element.from}</div>
+                                            <div className='from'>{allBooked.from}</div>
                                             <div className='d-flex align-items-center justify-content-center'>
                                                 <div className='sm-circle'></div>
                                                 <div className='sm-long'></div>
                                                 <div className='sm-circle'></div>
                                             </div>
-                                            <div className='to'>{element.to}</div>
+                                            <div className='to'>{allBooked.to}</div>
                                         </div>
                                         <div className='clas1'>
-                                            <div className='clas text-center'>{element.classes}</div>
+                                            
+                                                
+                                                    <div  className='d-flex justify-content-center align-items-center'>
+                                                        <div className='clas text-center d-flex justify-content-center align-items-center'>{classes}</div>
+                                                    </div>
+                                            
                                         </div>
                                         <hr />
                                         <div className='d-flex align-items-center justify-content-evenly mt-5'>
                                             <div className='date'>
-                                                <div className='date1'>{element.dates}</div>
+                                                <div className='date1'>{allBooked.dates}</div>
                                             </div>
                                             <div className='time'>
-                                                <div className='time1'>{element.passenger}</div>
+                                                <div className='time1'>{allBooked.passenger}</div>
                                             </div>
                                         </div>
+                                        <hr />
+                                        <div>
+                                            <div>{Booked.price}</div>
+                                        </div>
+                                        <hr />
+                                        <div className='d-flex'>
+                                          <button onClick={()=>cancel(allBooked)}>Cancel</button>
+                                          <button onClick={confirm}>Confirm</button>
+                                        </div>
+                                        <ToastContainer/>
                                     </div>
-                                ))
-                            }
+                                    
                         </div>
-                        <hr />
 
                     </div>
-                    <div className='d-flex'>
-                        <button>Cancel</button>
-                        <button>Confirm</button>
-                    </div>
+                   
                 </div>
             </div>
         </>

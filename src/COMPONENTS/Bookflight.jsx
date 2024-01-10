@@ -5,6 +5,7 @@ import vector from '../Images/Vector 1.png'
 import plane1 from '../Images/plane.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Bookflight = () => {
   const navigate = useNavigate()
@@ -12,12 +13,11 @@ const Bookflight = () => {
   const [to, setto] = useState('')
   const [dates, setdates] = useState('')
   const [passenger, setpassenger] = useState('')
-  const [classes, setclasses] = useState({})
+  const [classes, setclasses] = useState([])
   const [flights, setflights] = useState(JSON.parse(localStorage.getItem('flightss')) || [])
   const email = localStorage.getItem("email");
   const booked = { from, to, dates, passenger, classes }
   const endpoint = "http://localhost:5002/airtaxy/bookflight"
-  const endpoints = "http://localhost:5002/airtaxy/token"
   const token = localStorage.getItem("token")
   const loc = {
     to: to,
@@ -25,41 +25,41 @@ const Bookflight = () => {
     classes: classes
   }
 
-  // console.log(token);
-  // useEffect(() => {
-  //   axios.get(endpoints, {
-  //     headers: {
-  //         "Authorization": `Bearer ${token}`,
-  //         "Content-Type": "application/json",
-  //         "Accept": "application/json"
-  //     }
-  // }).then((response)=>{
-  //     console.log(response)
-
-  // })
-  // }, [])
-
   const post = async () => {
-    try {
-      console.log(booked);
-      console.log(token, "testRam");
-      // setflights([...flights, booked])
-      // console.log(flights);
-      // localStorage.setItem('flightss', JSON.stringify(flights))
-      const response = await axios.post(
-        endpoint,
-        { from, to, dates, passenger, classes },
-        {
-          headers: {
-            "Authorization": `bearer ${token}`,
-            "Content-Type": "application/json"
+    const inputFrom = from.charAt(0).toUpperCase() + from.slice(1);
+    const inputTo = to.charAt(0).toUpperCase() + to.slice(1);
+    setfrom(inputFrom)
+    setto(inputTo)
+    if (from !== 'Lagos' ) {
+        toast.error('you can only book flight from lagos')
+    } else if (to !== 'Abuja'&&
+              to !== 'Dubai'&&
+              to !== 'Canada'&&
+              to !== 'United Kingdom'&&
+              to !== 'United State of America'){
+      toast.error('you can only book flight to Abuja, Dubai, Canada, United Kingdom, United State of America')
+    }else if (from == "" || to == "" || dates == "" || passenger == "" || classes == "" ) {
+      toast.error('Fill all inputs')
+    }else{
+      try {
+        console.log(booked);
+        console.log(token, "testRam");
+        const response = await axios.post(
+          endpoint,
+          { from, to, dates, passenger, classes },
+          {
+            headers: {
+              "Authorization": `bearer ${token}`,
+              "Content-Type": "application/json"
+            }
           }
-        }
-      )
-      console.log(response)
-      navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
-    } catch (error) {
-      console.log(error)
+        )
+        console.log(response)
+        toast.success(response.message)
+        navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
   }
@@ -131,9 +131,9 @@ const Bookflight = () => {
               <div>
                 <select onChange={((e) => setclasses(e.target.value))}>
                   <option hidden value="">Class</option>
-                  <option value="FirstClass">FirstClass</option>
-                  <option value="BusinessClass">BusinessClass</option>
-                  <option value="EconomyClass">EconomyClass</option>
+                  <option value="First Class">First Class</option>
+                  <option value="Business Class">Business Class</option>
+                  <option value="Economy Class">Economy Class</option>
                 </select>
               </div>
             </div>
@@ -148,6 +148,7 @@ const Bookflight = () => {
                 </button>
               </div>
             </div>
+            <ToastContainer/>
           </div>
         </div>
       </div>
