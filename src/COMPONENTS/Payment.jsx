@@ -9,6 +9,7 @@ import { useFlutterwave } from 'flutterwave-react-v3';
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 import { useNavigate } from 'react-router-dom'
 import qrcode from 'qrcode-generator'
+// import Props4 from './Props4'
 
 
 const Payment = () => {
@@ -66,7 +67,7 @@ const Payment = () => {
     amount,
     currency: 'NGN',
     payment_options: "card, banktransfer, ussd",
-    // redirect_url: navigate("/boardingpass"),
+    redirect_url: navigate("/boardingpass"),
     customer: {
       email,
     },
@@ -105,6 +106,7 @@ const Payment = () => {
   },
   onClose: () => {},
 };
+
   return (
     <div>
        <div className='d-flex seat-up'>
@@ -147,22 +149,21 @@ const Payment = () => {
                 <div>{Booked.price}</div>
               </div>
               <hr />
-              <div>
-                {/* <img className='w-50 h-50'  src="data:image/gif;base64,R0lGODdhSgBKAIAAAAAAAP///ywAAAAASgBKAAAC/4yPqcvtD6OctNqLs968+w+G4kiWZgKk6roaqcvCzHuwtkrdtxzYvEKD6VqT4IJG5BmJSIDDCIGinD1cjbq0Np9USZPZrQqtvyM2Ji6ewYgvOT1ba8NR+bYqdSvP47vXzodHl8ZGCFhW1xc4Fgc0p4j44OYn2Dh15wMXIdUWhuk5R+mYM9hpatippzmqNvSICvvpytkw+/q5t2dLolqWdbIpd+pb2qGayWpJ2RvMKEhLm6vJXJeZVRgnO0RqDYptpq3DDdhdmHQ5GF0buv0ceJ6aXpw4xUXsDH+lbjlsdl8J0NG+dfHEGUK2St8bC9faTXoDDc04DAbj9RMlaWEriewKLy7aWLBdJDDh5q1r6Kofvlsc/xjM9wvcO2EVUga8orJjLI1cXnr7KE2gSZc7pr06FXEgqUgeIdXbqQFjU3escNWcyfTgUYVS1UiL6DQPGqUgT5o0d8gYT53ZsFLNcK4cu7C2WgZDmZYku7pD4XJUB7MvCISANZLtOWtl4G4rGdZVbLjoMcFPlYHSlTanY3tGMTvVfJVuMpkhd3l9KxZx6cSnGXdmW9ldV8toPYLlupWe64d4LYOmzVJRb3+v/3Am5lPubILMkUt+/o2ozZi1jcYcN/0yQKvOsgL7Dj68+PHky5s/jz69evUFAAA7" alt="" /> */}
+              {/* <div>
+                <img className='w-50 h-50'  src="data:image/gif;base64,R0lGODdhSgBKAIAAAAAAAP///ywAAAAASgBKAAAC/4yPqcvtD6OctNqLs968+w+G4kiWZgKk6roaqcvCzHuwtkrdtxzYvEKD6VqT4IJG5BmJSIDDCIGinD1cjbq0Np9USZPZrQqtvyM2Ji6ewYgvOT1ba8NR+bYqdSvP47vXzodHl8ZGCFhW1xc4Fgc0p4j44OYn2Dh15wMXIdUWhuk5R+mYM9hpatippzmqNvSICvvpytkw+/q5t2dLolqWdbIpd+pb2qGayWpJ2RvMKEhLm6vJXJeZVRgnO0RqDYptpq3DDdhdmHQ5GF0buv0ceJ6aXpw4xUXsDH+lbjlsdl8J0NG+dfHEGUK2St8bC9faTXoDDc04DAbj9RMlaWEriewKLy7aWLBdJDDh5q1r6Kofvlsc/xjM9wvcO2EVUga8orJjLI1cXnr7KE2gSZc7pr06FXEgqUgeIdXbqQFjU3escNWcyfTgUYVS1UiL6DQPGqUgT5o0d8gYT53ZsFLNcK4cu7C2WgZDmZYku7pD4XJUB7MvCISANZLtOWtl4G4rGdZVbLjoMcFPlYHSlTanY3tGMTvVfJVuMpkhd3l9KxZx6cSnGXdmW9ldV8toPYLlupWe64d4LYOmzVJRb3+v/3Am5lPubILMkUt+/o2ozZi1jcYcN/0yQKvOsgL7Dj68+PHky5s/jz69evUFAAA7" alt="" />
                 <img className='w-50 h-50 ' src={qrCodeImage && qrCodeImage} alt="qrcode" />
-              </div>
-              <div className='d-flex'>
-                {/* <button onClick={()=>cancel(allBooked)}>Cancel</button> */}
-                <button onClick={confirm}>Confirm</button>
-              </div>
+              </div> */}
               <ToastContainer/>
             </div>
           </div>
-        <div>
-          {/* <button onClick={pay}>Payment</button> */}
-          <PaystackButton {...componentProps} />
-          <FlutterWaveButton {...fwConfig} />
+        <div className='border border-black p-4'>
+          <div>what will you like to pay with?</div>
+          <PaystackButton {...componentProps}  className='signup-clk'/>
+          <FlutterWaveButton {...fwConfig} className='signup-clk' />
         </div>
+        {/* <div className='mt-2'>
+          <Props4 gradient='Confirm' gradient1='signup-clk mt-5' pass='Submit' onClick={confirm}/>
+        </div> */}
     </div>
   )
 }

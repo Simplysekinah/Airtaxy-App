@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
+import { MdOutlineModeEdit } from "react-icons/md";
 
 const Contacts = () => {
     const navigate=useNavigate()
@@ -64,6 +65,12 @@ const Contacts = () => {
             <div className='p-4'>
                 <div className='d-flex align-items-center justify-content-center mt-4'><img className='air' src={air} alt="" /></div>
                     <div>
+                        <div>
+                            <div>
+                                <img src="" alt="" />
+                                <MdOutlineModeEdit />
+                            </div>
+                        </div>
                         <div className='email-div'>
                             <label className='email-con' htmlFor="">Name</label>
                             <br />

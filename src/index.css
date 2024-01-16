@@ -765,3 +765,25 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     text-align: center;
     color: #909090;
 }
+.pay{
+    color: #FFF;
+    font-family: Caveat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background: linear-gradient(to right, #4612B6, #12B6A2);
+    border-radius: 10px;
+    border: 0;
+    width: 350px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
+}
+.profile{
+    width: 200px;
+    height: 50px;
+}
