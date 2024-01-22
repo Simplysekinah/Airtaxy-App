@@ -17,52 +17,56 @@ const Onboarding3 = () => {
   return (
     <>
         <div className='container-fluid fourthpage'>
+          <div className='thirdpage-one'>
             <div className='text-center m-auto' ><img className='onb-plane1 img-fluid' src={onboard3} alt="" /></div>
-            <p className='onb1-txt'>Easy payment</p>
-                <p className='onb1-txt1'>Our app supports many types of payment methods and pay without stress.</p>
-                <div className='text-center div-holder'>
-                     <div className='divp2'>
-                        <Props1 next='div2'/>
-                     </div>
-                     <div className='divp2'>
-                        <Props1 next='div2'/>
-                     </div>
-                     <Props3/>
-                </div>
-                <div style={{ width: 200, height: 200, position: 'relative' }}>
-                <CircularProgressbar
-                        value={percentage}
-                        text={`${percentage}%`}
-                        counterClockwise={true}
-                        background={false}
-                        styles={buildStyles({
-                            // Rotation of path and trail, in number of turns (0-1)
-                            rotation: 0.25,
+              <p className='onb1-txt'>Easy payment</p>
+                  <p className='onb1-txt1'>Our app supports many types of payment methods and pay without stress.</p>
+                  <div className='text-center div-holder'>
+                      <div className='divp2'>
+                          <Props1 next='div2'/>
+                      </div>
+                      <div className='divp2'>
+                          <Props1 next='div2'/>
+                      </div>
+                      <Props3/>
+                  </div>
+                  <div className='onboard1-next mt-5'>
+                    <div style={{ width: 200, height: 200, position: 'relative' }}>
+                    <CircularProgressbar
+                            value={percentage}
+                            text={`${percentage}%`}
+                            counterClockwise={true}
+                            background={false}
+                            styles={buildStyles({
+                                // Rotation of path and trail, in number of turns (0-1)
+                                rotation: 0.25,
 
-                            // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                            strokeLinecap: 'butt',
-                            
-                            // Text size
-                            textSize: '16px',
+                                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                strokeLinecap: 'butt',
+                                
+                                // Text size
+                                textSize: '16px',
 
-                            // How long animation takes to go from one percentage to another, in seconds
-                            pathTransitionDuration: 0.5,
+                                // How long animation takes to go from one percentage to another, in seconds
+                                pathTransitionDuration: 0.5,
 
-                            // Can specify path transition in more detail, or remove it entirely
-                            // pathTransition: 'none',
+                                // Can specify path transition in more detail, or remove it entirely
+                                // pathTransition: 'none',
 
-                            // Colors
-                            pathColor: `rgba(70, 18, 182, 1, ${percentage / 100})`,
-                            textColor: '#4612B6',
-                            trailColor: 'rgba(11, 11, 11, 1)',
-                            // backgroundColor:{default:true},
-                            background: {
-                                fill: '#4612B6',
-                              },
-                        })}
-                    />;
-                  <Props2/>
-                </div>
+                                // Colors
+                                pathColor: `rgba(70, 18, 182, 1, ${percentage / 100})`,
+                                textColor: '#4612B6',
+                                trailColor: 'rgba(11, 11, 11, 1)',
+                                // backgroundColor:{default:true},
+                                background: {
+                                    fill: '#4612B6',
+                                  },
+                            })}
+                        />;
+                      <Props2/>
+                    </div>
+                  </div>
+          </div>
         </div>   
     </>
   )

@@ -9,9 +9,8 @@ const Landing = () => {
     }, 3000);
     return (
         <>
-            <div className='container-fluid firstpage w-100 d-flex justify-content-center align-items-center'>
-                <div className='text-center'><img src={logo} alt="" /></div>
-                
+            <div className='container-fluid firstpage d-flex justify-content-center align-items-center'>
+                <div className='text-center'><img src={logo} alt="" /></div>       
             </div>
         </>
     )

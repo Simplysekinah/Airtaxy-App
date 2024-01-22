@@ -11,14 +11,14 @@ const Onboarding4 = () => {
   return (
     <>
        <div className="container-fluid fifthpage">
-            <div className='text-center m-auto' ><img className='onb-plane img-fluid' src={onboard4} alt="" /></div>
+            <div className='text-center m-auto' ><img className='onb-plane img-fluid mt-5' src={onboard4} alt="" /></div>
             <p className='onb4-txt'>Live life with no excuses, travel with no regrets.</p>
             <div className='onb4-holder'>
                 <div className='text-center d-flex justify-content-center' onClick={login}>
                     <Props4 gradient='Continue' gradient1='onb4-button'/>
                 </div>
-                <div className='text-center'><Link to='/signup' className='signup-link'>Sign Up</Link></div>
-                <div className='text-center'><Link to='/login' className='login-link'>Already have an Account</Link></div>
+                <div className='text-center mt-2'><Link to='/signup' className='signup-link'>Sign Up</Link></div>
+                <div className='text-center mt-2'><Link to='/login' className='login-link'>Already have an Account</Link></div>
             </div>
 
         </div> 
