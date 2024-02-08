@@ -17,8 +17,8 @@ const Onboarding4 = () => {
                 <div className='text-center d-flex justify-content-center' onClick={login}>
                     <Props4 gradient='Continue' gradient1='onb4-button'/>
                 </div>
-                <div className='text-center mt-2'><Link to='/signup' className='signup-link'>Sign Up</Link></div>
-                <div className='text-center mt-2'><Link to='/login' className='login-link'>Already have an Account</Link></div>
+                <div className='text-center mt-1'><Link to='/signup' className='signup-link'>Sign Up</Link></div>
+                <div className='text-center mt-1'><Link to='/login' className='login-link'>Already have an Account</Link></div>
             </div>
 
         </div> 

@@ -50,39 +50,41 @@ const Login = () => {
    
   return (
     <>
-        <div className="container-fluid">
-            <div className='signup'>
-                <div className='sign-up w-100 d-flex justify-content-center align-items-center'>
-                    <img className='img-fluid text-center' src={logo} alt="" />
-                </div>
-            </div>
-            <br />
-            <br />
-            <div className='container sign-down'>
-                <p className='sign1'>Login up</p>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <div className='email-div'>
-                            <label className='email' htmlFor="">Email</label>
-                            <br />
-                            <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
-                            </div>
-                        </div>
-                        <div className='email-div'>
-                            <label className='email' htmlFor="">Password</label>
-                            <br />
-                            <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
-                            </div>
-                        </div>
-                        <div className='signup-button'>
-                            <Props4 gradient='Login up' gradient1='signup-clk' pass='Submit'/>
-                        </div>
-                        <ToastContainer />
+        <div className="container-fluid sign-page">
+            <div className='thirdpage-one'>
+                <div className='signup'>
+                    <div className='sign-up w-100 d-flex justify-content-center align-items-center'>
+                        <img className='img-fluid text-center' src={logo} alt="" />
                     </div>
-                </form>
-                <p className='text-white text-end'onClick={forget}>Forget Password?</p>
+                </div>
+                <br />
+                <br />
+                <div className='container sign-down'>
+                    <p className='sign1'>Login up</p>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <div className='email-div  mt-5'>
+                                <label className='email' htmlFor="">Email</label>
+                                <br />
+                                <div className='inputs'>
+                                    <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
+                                </div>
+                            </div>
+                            <div className='email-div  mt-5'>
+                                <label className='email' htmlFor="">Password</label>
+                                <br />
+                                <div className='inputs'>
+                                    <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="password" onChange={handleChange} onBlur={handleBlur} />
+                                </div>
+                            </div>
+                            <div className='signup-button  mt-5'>
+                                <Props4 gradient='Login up' gradient1='signup-clk' pass='Submit'/>
+                            </div>
+                            <ToastContainer />
+                        </div>
+                    </form>
+                    <p className='text-white text-end mt-2'onClick={forget}>Forget Password?</p>
+                </div>
             </div>
         </div>  
     </>

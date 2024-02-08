@@ -64,7 +64,7 @@ const Signup = () => {
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                <div className='email-div mt-4'>
+                                <div className='email-div mt-5'>
                                     <label className='email' htmlFor="">Email</label>
                                     <br />
                                     <div className='inputs'>
@@ -74,7 +74,7 @@ const Signup = () => {
                                         ) : null}
                                     </div>
                                 </div>
-                                <div className='email-div mt-4'>
+                                <div className='email-div mt-5'>
                                     <label className='email' htmlFor="">Password</label>
                                     <br />
                                     <div className='inputs'>
@@ -84,7 +84,7 @@ const Signup = () => {
                                         ) : null}
                                     </div>
                                 </div>
-                                <div className='signup-button mt-4'>
+                                <div className='signup-button mt-5'>
                                     <Props4 gradient='Sign up' gradient1='signup-clk'   pass='Submit' />
                                 </div>
                                 <div className='text-center mt-5'><Link to='/login' className='login-link'>Already have an Account</Link></div>

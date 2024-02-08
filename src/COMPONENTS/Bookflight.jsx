@@ -6,6 +6,14 @@ import plane1 from '../Images/plane.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import hom from '../Images/hom.png'
+import home from '../Images/home.png'
+import plan from '../Images/plan.png'
+import planes from '../Images/plane1.png'
+import hote from '../Images/hote.png'
+import hotel from '../Images/hotel.png'
+import vacatio from '../Images/vacatio.png'
+import vacation1 from '../Images/vacation1.png'
 
 const Bookflight = () => {
   const navigate = useNavigate()
@@ -30,17 +38,17 @@ const Bookflight = () => {
     const inputTo = to.charAt(0).toUpperCase() + to.slice(1);
     setfrom(inputFrom)
     setto(inputTo)
-    if (from !== 'Lagos' ) {
-        toast.error('you can only book flight from lagos')
-    } else if (to !== 'Abuja'&&
-              to !== 'Dubai'&&
-              to !== 'Canada'&&
-              to !== 'United Kingdom'&&
-              to !== 'United State of America'){
-      toast.error('you can only book flight to Abuja, Dubai, Canada, United Kingdom, United State of America')
-    }else if (from == "" || to == "" || dates == "" || passenger == "" || classes == "" ) {
+    if (from !== 'lagos') {
+      toast.error('you can only book flight from lagos')
+    } else if (to !== 'abuja' &&
+      to !== 'dubai' &&
+      to !== 'canada' &&
+      to !== 'united Kingdom' &&
+      to !== 'united State of America') {
+      toast.error('you can only book flight to abuja, dubai, canada, united Kingdom, united State of America')
+    } else if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
       toast.error('Fill all inputs')
-    }else{
+    } else {
       try {
         console.log(booked);
         console.log(token, "testRam");
@@ -66,89 +74,124 @@ const Bookflight = () => {
   useEffect(() => {
     localStorage.setItem('flightss', JSON.stringify(flights))
   }, [flights])
-
+  const [homd, sethomd] = useState(true)
+  const [flightpage, setflightpage] = useState(false)
+  const [hotelpage, sethotelpage] = useState(true)
+  const [vacationpage, setvacationpage] = useState(true)
+  const first = () => {
+    { homd ? sethomd(false) : sethomd(true) }
+    navigate('/home')
+  }
+  const second = () => {
+    { flightpage ? setflightpage(true) : setflightpage(false) }
+    navigate('/book')
+  }
+  const third = () => {
+    { hotelpage ? sethotelpage(false) : sethotelpage(true) }
+    // navigate('/')
+  }
+  const fourth = () => {
+    { vacationpage ? setvacationpage(false) : setvacationpage(true) }
+    // navigate('/')
+  }
   return (
     <>
       <div className="book-flight">
-        <p className='book-p text-center'>Book flight</p>
-        <div className='div-cir'>
-          <div className='divss'></div>
-        </div>
-        <div className='flight-div'>
-          <div className='btn-flights'>
-            <div className='btn-bgd'>
-              <button className='bgd-btn'>
-                <p className='bdg-p'>ROUND TRIP</p>
-              </button>
-            </div>
-            <div className='btn-bgd1'>
-              <button className='bdg-btn1'>
-                <p className='bdg-p1'>ONE WAY</p>
-              </button>
-            </div>
-            <div className='btn-bgd2'>
-              <button className='bdg-btn2'>
-                <p className='bdg-p2'>MULTI-CITY</p>
-              </button>
-            </div>
+        <div className='thirdpage-one'>
+          <p className='book-p text-center'>Book flight</p>
+          <div className='div-cir'>
+            <div className='divss'></div>
           </div>
-          <div className='booking-div'>
-            <div className='frm-div'>
-              <div>
-                <img src={plane} alt="" />
+          <div className='flight-div'>
+            <div className='btn-flights'>
+              <div className='btn-bgd'>
+                <button className='bgd-btn'>
+                  <p className='bdg-p'>ROUND TRIP</p>
+                </button>
               </div>
-              <div>
-                <div>From</div>
-                <input type="text" placeholder='Enter City' className='inp-frm' onChange={((e) => setfrom(e.target.value))} />
+              <div className='btn-bgd1'>
+                <button className='bdg-btn1'>
+                  <p className='bdg-p1'>ONE WAY</p>
+                </button>
               </div>
-            </div>
-            <div className='frm-div'>
-              <div>
-                <img src={plane} alt="" />
-              </div>
-              <div>
-                <div>To</div>
-                <input type="text" placeholder='Enter City' className='inp-frm' onChange={((e) => setto(e.target.value))} />
-              </div>
-            </div>
-            <div className='frm-div'>
-              <div>
-                <img src={plane} alt="" />
-              </div>
-              <div>
-                <input type="date" placeholder='Date' className='inp-frm' onChange={((e) => setdates(e.target.value))} />
-              </div>
-            </div>
-            <div className='frm-div'>
-              <div>
-                <select onChange={((e) => setpassenger(e.target.value))}>
-                  <option hidden value="">Passenger</option>
-                  <option value="1 Passenger">1 person</option>
-                  <option value="2 Passenger">2 Passenger</option>
-                  <option value="1 Passenger">3 Passenger</option>
-                </select>
-              </div>
-              <div>
-                <select onChange={((e) => setclasses(e.target.value))}>
-                  <option hidden value="">Class</option>
-                  <option value="First Class">First Class</option>
-                  <option value="Business Class">Business Class</option>
-                  <option value="Economy Class">Economy Class</option>
-                </select>
-              </div>
-            </div>
-            <div className='flights-btns'>
-              <div className='flight-btn'>
-                <button className="flight-btn1" type='button' onClick={post}>
-                  <div className='con-btn'>
-                    <div className='don'>Done</div>
-                    <img src={vector} alt="" />
-                    <img className='plane-lg' src={plane1} alt="" />
-                  </div>
+              <div className='btn-bgd2'>
+                <button className='bdg-btn2'>
+                  <p className='bdg-p2'>MULTI-CITY</p>
                 </button>
               </div>
             </div>
-            <ToastContainer/>
+            <div className='booking-div'>
+              <div className='frm-div'>
+                <div>
+                  <img src={plane} alt="" />
+                </div>
+                <div>
+                  <div>From</div>
+                  <input type="text" placeholder='Enter City' className='inp-frm' onChange={((e) => setfrom(e.target.value))} />
+                </div>
+              </div>
+              <div className='frm-div'>
+                <div>
+                  <img src={plane} alt="" />
+                </div>
+                <div>
+                  <div>To</div>
+                  <input type="text" placeholder='Enter City' className='inp-frm' onChange={((e) => setto(e.target.value))} />
+                </div>
+              </div>
+              <div className='frm-div'>
+                <div>
+                  <img src={plane} alt="" />
+                </div>
+                <div>
+                  <input type="date" placeholder='Date' className='inp-frm' onChange={((e) => setdates(e.target.value))} />
+                </div>
+              </div>
+              <div className='frm-div'>
+                <div>
+                  <select onChange={((e) => setpassenger(e.target.value))}>
+                    <option hidden value="">Passenger</option>
+                    <option value="1 Passenger">1 person</option>
+                    <option value="2 Passenger">2 Passenger</option>
+                    <option value="1 Passenger">3 Passenger</option>
+                  </select>
+                </div>
+                <div>
+                  <select onChange={((e) => setclasses(e.target.value))}>
+                    <option hidden value="">Class</option>
+                    <option value="First Class">First Class</option>
+                    <option value="Business Class">Business Class</option>
+                    <option value="Economy Class">Economy Class</option>
+                  </select>
+                </div>
+              </div>
+              <div className='flights-btns'>
+                <div className='flight-btn'>
+                  <button className="flight-btn1" type='button' onClick={post}>
+                    <div className='con-btn'>
+                      <div className='don'>Done</div>
+                      <img src={vector} alt="" />
+                      <img className='plane-lg' src={plane1} alt="" />
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <ToastContainer />
+            </div>
+          </div>
+          <div className='bottom-div'>
+            <button onClick={first}>
+              <img src={homd ? hom : home} alt="" />
+            </button>
+            <button onClick={second}>
+              <img src={flightpage ? plan : plane} alt="" />
+            </button>
+            <button onClick={third}>
+              <img src={hotelpage ? hote : hotel} alt="" />
+            </button>
+            <button onClick={fourth}>
+              <img src={vacationpage ? vacatio : vacation1} alt="" />
+            </button>
           </div>
         </div>
       </div>

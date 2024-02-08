@@ -44,45 +44,47 @@ const VerifyPassword = () => {
     return (
         <>
             <div className="container-fluid forget-pass">
-                <div className='container-fluid forget-up w-100 '>
-                    <div className='forget-bck d-flex justify-content-center align-items-center'>
-                        <div className='forget-in'>
+                <div className='thirdpage-one'>
+                    <div className='container-fluid forget-up w-100 '>
+                        <div className='forget-bck d-flex justify-content-center align-items-center'>
+                            <div className='forget-in'>
 
+                            </div>
+                        </div>
+                        <div>
+                            <img className='img-fluid text-center' src={logo} alt="" />
                         </div>
                     </div>
-                    <div>
-                        <img className='img-fluid text-center' src={logo} alt="" />
-                    </div>
-                </div>
-                <br />
-                <br />
-                <div className="container sign-down">
-                    <p className='forget-p'>Verification</p>
-                    <div className='pad-holder text-center'>
-                        {/* <img src={padlock} alt="" /> */}
-                    </div>
-                    <div className='inps-holder'>
-                        {otp && otp.map((digit, index) => (
-                            <div className='inps-circle' key={index}>
-                                <input
-                                    value={digit}
-                                    onChange={(event) => HandleInputChange(index, event)}
-                                    ref={(el) => inputRef.current[index] = el}
-                                    maxLength={1}
-                                    type="text"
-                                    className='inp'
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    <div className='d-flex blg justify-content-center'>
-                        <div className='text-white'>If you didn't receive a code!</div>
-                        <div className='log'>Resend it</div>
-                    </div>
-                    <Props4 onClick={verify} gradient='Verify' gradient1='signup-clk justify-content-center d-flex' />
-                    <div className='d-flex blg justify-content-center'>
-                        <div className='text-white'>Back to</div>
-                        <div className='log'>Login</div>
+                    <br />
+                    <br />
+                    <div className="container sign-down">
+                        <p className='forget-p'>Verification</p>
+                        <div className='pad-holder text-center'>
+                            {/* <img src={padlock} alt="" /> */}
+                        </div>
+                        <div className='inps-holder mt-5'>
+                            {otp && otp.map((digit, index) => (
+                                <div className='inps-circle' key={index}>
+                                    <input
+                                        value={digit}
+                                        onChange={(event) => HandleInputChange(index, event)}
+                                        ref={(el) => inputRef.current[index] = el}
+                                        maxLength={1}
+                                        type="text"
+                                        className='inp'
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        <div className='d-flex blg justify-content-center mt-3'>
+                            <div className='text-white'>If you didn't receive a code!</div>
+                            <div className='log'>Resend it</div>
+                        </div>
+                        <Props4 onClick={verify} gradient='Verify' gradient1='signup-clk justify-content-center d-flex mt-5' />
+                        <div className='d-flex blg justify-content-center mt-3'>
+                            <div className='text-white'>Back to</div>
+                            <div className='log'>Login</div>
+                        </div>
                     </div>
                 </div>
             </div>

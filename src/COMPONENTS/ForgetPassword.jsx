@@ -51,38 +51,40 @@ const ForgetPassword = () => {
   return (
     <>
         <div className="container forget-pass">
-            <div className='container-fluid forget-up w-100 '>
-                <div className='forget-bck d-flex justify-content-center align-items-center'>
-                    <div className='forget-in'>
-                        
+            <div className='thirdpage-one'>
+                <div className='container-fluid forget-up w-100 '>
+                    <div className='forget-bck d-flex justify-content-center align-items-center'>
+                        <div className='forget-in'>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <img className='img-fluid text-center' src={logo} alt="" />
                     </div>
                 </div>
-                <div>
-                    <img className='img-fluid text-center' src={logo} alt="" />
-                </div>
-            </div>
-            <br />
-            <br />
-            <div className="container sign-down">
-                <p className='forget-p'>Forget Password</p>
-                <div className='pad-holder text-center'>
-                    <img src={padlock} alt="" />
-                </div>
-                <form action="" onSubmit={handleSubmit}>
-                    <div className='email-div'>
-                            <label className='email d-flex justify-content-center'>Enter Email Address</label>
-                            <br />
-                            <div className='inputs'>
-                                <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
-                            </div>
+                <br />
+                <br />
+                <div className="container sign-down">
+                    <p className='forget-p'>Forget Password</p>
+                    <div className='pad-holder text-center'>
+                        <img src={padlock} alt="" />
                     </div>
-                    <Props4 gradient='Send' gradient1='signup-clk justify-content-center d-flex' pass='Submit'/>
-                    <ToastContainer />
-                </form>
-                
-                <div className='d-flex blg justify-content-center'>
-                    <div className='text-white'>Back to</div>
-                    <div className='log'>Login</div>
+                    <form action="" onSubmit={handleSubmit}>
+                        <div className='email-div'>
+                                <label className='email d-flex justify-content-center'>Enter Email Address</label>
+                                <br />
+                                <div className='inputs'>
+                                    <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name="email" onChange={handleChange} onBlur={handleBlur} />
+                                </div>
+                        </div>
+                        <Props4 gradient='Send' gradient1='signup-clk justify-content-center d-flex' pass='Submit'/>
+                        <ToastContainer />
+                    </form>
+                    
+                    <div className='d-flex blg justify-content-center'>
+                        <div className='text-white'>Back to</div>
+                        <div className='log'>Login</div>
+                    </div>
                 </div>
             </div>
         </div>
