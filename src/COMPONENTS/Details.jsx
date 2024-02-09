@@ -8,6 +8,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 // import { fetchingFlight, flightFetched, fetchedError } from './Redux/FlightBookSlice'
 import { receipts } from './Service/Receipts'
+import Props4 from './Props4'
+import vector from '../Images/Vector 1.png'
+import plane1 from '../Images/plane.png'
 
 const Details = () => {
     const navigate = useNavigate()
@@ -102,7 +105,7 @@ const Details = () => {
             <div>
                 <div className='detail-up'>
                     <div className='thirdpage-one'>
-                        <div className='d-flex align-items-center justify-content-around details-up'>
+                        <div className='d-flex align-items-center justify-content-around details-up '>
                             <div className='con-bck'>
                                 <div className='con-bck1'>
                                     <div className='con-bck2'>
@@ -153,8 +156,20 @@ const Details = () => {
                                     </div>
                                     <hr />
                                     <div className='d-flex'>
-                                        <button onClick={() => cancel(allBooked)}>Cancel</button>
-                                        <button onClick={confirm}>Confirm</button>
+                                        {/* <button className='cancel' onClick={() => cancel(allBooked)}>Cancel</button> */}
+                                        <div className='flights-btns'>
+                                            <div className='flight-btns'>
+                                                <button className="flight-btn1" type='button' onClick={() => cancel(allBooked)}>
+                                                    <div className='con-btn'>
+                                                        <div className='don'>Done</div>
+                                                        <img className='vect' src={vector} alt="" />
+                                                        <img className='plane-lg' src={plane1} alt="" />
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        {/* <button className='cancels' onClick={confirm}>Confirm</button> */}
+                                        <Props4 gradient='Confirm' gradient1='continue-clk' onClick={confirm} pass='Submit' />
                                     </div>
                                     <ToastContainer />
                                 </div>
