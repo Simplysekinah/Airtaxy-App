@@ -46,7 +46,7 @@ const ChooseSeat = () => {
     <>
       <div className='seat-div'>
         <div className='thirdpage-one'>
-          <div className='d-flex lign-items-center justify-content-around  seat-up'>
+          <div className=' d-flex lign-items-center justify-content-around  seat-up'>
             <div className='con-bck'>
               <div className='con-bck1'>
                 <div className='con-bck2'>
