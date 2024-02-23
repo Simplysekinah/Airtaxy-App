@@ -8,13 +8,17 @@ import * as yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
-// import { useState } from 'react'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const ResetPassword = () => {
     const [password, setpassword] = useState('')
     const [Confirm, setConfirm] = useState('')
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/reset"
     const navigate = useNavigate()
+    const [showing, setShowing] = useState(false);
+    const show = () => {
+        { showing ? setShowing(false) : setShowing(true) }
+    }
 
     const details = {
         password,
@@ -103,15 +107,31 @@ const ResetPassword = () => {
                             <label className='email d-flex justify-content-center'>Enter New Password</label>
                             <br />
                             <div className='inputs'>
-                                <input className='input1' type="text" name="email" onChange={((e) => setpassword(e.target.value))} onBlur={handleBlur} />
+                                <div className='inp-holders'>
+                                    <input className={errors.password ? 'input1 form-control' : 'input1'} type={showing ? "password" : "text"} name='password' onChange={((e) => setpassword(e.target.value))} onBlur={handleBlur} />
+                                    <button className='show-pass' type='button' onClick={show}>{showing ? <FaEyeSlash /> : <FaEye />}</button>
+                                    {/* <button className='show-pass' type='button' onClick={() => setShowing(!showing)}>{showing ? <FaEyeSlash /> : <FaEye />}</button> */}
+
+                                </div>
+
                             </div>
+                            {errors.password && touched.password ? (
+                                <small className='text-danger d-flex justify-content-center'>{errors.password}</small>
+                            ) : null}
                         </div>
                         <div className='email-div'>
                             <label className='email d-flex justify-content-center'>Confirm Password</label>
                             <br />
                             <div className='inputs'>
-                                <input className='input1' type="text" name="email" onChange={((e) => setConfirm(e.target.value))} onBlur={handleBlur} />
+                                <div className='inp-holders'>
+                                    <input className={errors.password ? 'input1 form-control' : 'input1'} type={showing ? "password" : "text"} name='password' onChange={((e) => setConfirm(e.target.value))} onBlur={handleBlur} />
+                                    <button className='show-pass' type='button' onClick={show}>{showing ? <FaEyeSlash /> : <FaEye />}</button>
+                                    {/* <button className='show-pass' type='button' onClick={() => setShowing(!showing)}>{showing ? <FaEyeSlash /> : <FaEye />}</button> */}
+                                </div>                            
                             </div>
+                            {errors.password && touched.password ? (
+                                        <small className='text-danger d-flex justify-content-center'>{errors.password}</small>
+                                    ) : null}
                         </div>
                         <Props4 gradient='Reset' onClick={reset} gradient1='signup-clk justify-content-center d-flex' />
                         <ToastContainer />

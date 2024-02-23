@@ -6,7 +6,8 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = () => {
     const [email, setemail] = useState('');
@@ -14,8 +15,10 @@ const Signup = () => {
     const [user, setuser] = useState('')
     const navigate = useNavigate()
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/signup"
-
-   
+    const [showing, setShowing] = useState(false);
+    const show = () => {
+        { showing ? setShowing(false) : setShowing(true) }
+    }
 
 
 
@@ -36,9 +39,9 @@ const Signup = () => {
                 await axios.post(endpoint, values).then((response) => {
                     console.log(response.data)
                     toast.success(response.data.message)
-                   setTimeout(() => {
-                     navigate('/login')
-                   }, 3000);
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 3000);
                 }).catch((error) => {
                     console.log(error)
                     toast.error(error.response.data.message)
@@ -46,7 +49,7 @@ const Signup = () => {
             }
         }
     })
-   
+
     return (
         <>
             <div className="container-fluid sign-page">
@@ -68,24 +71,32 @@ const Signup = () => {
                                     <label className='email' htmlFor="">Email</label>
                                     <br />
                                     <div className='inputs'>
-                                        <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name='email' onChange={handleChange} onBlur={handleBlur} />
-                                        {errors.email && touched.email ? (
-                                            <small className='text-light'>{errors.email}</small>
-                                        ) : null}
+                                        <div className="inp-holders">
+                                            <input className={errors.email && touched.email ? 'input1 is-invalid form-control' : 'input1'} type="text" name='email' onChange={handleChange} onBlur={handleBlur} />
+                                            {errors.email && touched.email ? (
+                                                <small className='text-light'>{errors.email}</small>
+                                            ) : null}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='email-div mt-5'>
                                     <label className='email' htmlFor="">Password</label>
                                     <br />
                                     <div className='inputs'>
-                                        <input className={errors.password ? 'input1 is-invalid form-control' : 'input1'} type="text" name='password' onChange={handleChange} onBlur={handleBlur} />
-                                        {errors.password && touched.password ? (
-                                            <small className='text-danger'>{errors.password}</small>
-                                        ) : null}
+                                        <div className='inp-holders'>
+
+                                            <input className={errors.password ? 'input1 form-control' : 'input1'} type={showing ? "password" : "text"} name='password' onChange={handleChange} onBlur={handleBlur} />
+                                            <button className='show-pass' type='button' onClick={show}>{showing ? <FaEyeSlash /> : <FaEye />}</button>
+                                            {/* <button className='show-pass' type='button' onClick={() => setShowing(!showing)}>{showing ? <FaEyeSlash /> : <FaEye />}</button> */}
+
+                                        </div>
                                     </div>
+                                    {errors.password && touched.password ? (
+                                        <small className='text-danger'>{errors.password}</small>
+                                    ) : null}
                                 </div>
                                 <div className='signup-button mt-5'>
-                                    <Props4 gradient='Sign up' gradient1='signup-clk'   pass='Submit' />
+                                    <Props4 gradient='Sign up' gradient1='signup-clk' pass='Submit' />
                                 </div>
                                 <div className='text-center mt-5'><Link to='/login' className='login-link'>Already have an Account</Link></div>
                                 <ToastContainer />
