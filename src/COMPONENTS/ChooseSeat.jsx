@@ -94,7 +94,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={2}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -104,7 +104,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={3}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -116,7 +116,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={4}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -126,7 +126,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={5}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -138,7 +138,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={6}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -148,7 +148,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={7}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -158,7 +158,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={8}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -170,7 +170,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={9}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }
@@ -180,7 +180,7 @@ const ChooseSeat = () => {
                   <button className={click ? 'one' : 'same'}
                     value={10}
                     onClick={(event) => {
-                      handleclick()
+                      handleclick(event)
                       setcode(event.target.value)
                     }
                     }

@@ -43,57 +43,21 @@ const Bookflight = () => {
     setto(inputTo)
     // console.log(to);
   }, [from, to])
-  const handleDatechange = (event) => {
-    console.log(event.target.value);
-    const inputDate = event.target.value
-    const currentDate = new Date();
-    const yesterday = new Date(currentDate);
-    yesterday.setDate(currentDate.getDate() - 1);
-    if(inputDate){
 
-      const [day, month, year] = inputDate.split("-")
-      const pDate = new Date(year, month - 1, day)
-      if (pDate < yesterday) {
-        toast.error('which planets are you from abeg select real date')
-      } else if(pDate > currentDate) {
-        toast.error('my nigga you don receive slap before')
-      }
-      else{
-        toast.success('my nigga lets go there')
-      }
-      setdates(inputDate)
-    }
-  }
-  
   const post = async () => {
     setbuttondisabled(true)
-    console.log(from, to);
-    // const handleDatechange = (event) => {
-    //   const inputDate = event.target.value
-    //   const currentDate = new Date();
-    //   const yesterday = new Date(currentDate);
-    //   yesterday.setDate(currentDate.getDate() - 1);
-    //   if(inputDate){
-  
-    //     const [day, month, year] = inputDate.split("-")
-    //     const pDate = new Date(year, month - 1, day)
-    //     if (pDate < yesterday) {
-    //       toast.error('which planets are you from abeg select real date')
-    //     } else if(pDate > currentDate) {
-    //       toast.error('my nigga you don receive slap before')
-    //     }
-    //     else{
-    //       toast.success('my nigga lets go there')
-    //     }
-    //     setdates(inputDate)
-    //   }
-    // }
+    const dateObject = new Date(dates);
+    const timestamp = dateObject.getTime();
+
     if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
       toast.error('Fill all inputs')
-    }else if(dates == new Date()){
-        toast.error('Select a date in the past')
+
+    } else if (timestamp < Date.now()) {
+      toast.error('Cant choose the past')
     }
     else {
+      toast.success('my nigga lets go there')
+
       try {
         setisloading(true)
         console.log(booked);
@@ -112,7 +76,7 @@ const Bookflight = () => {
           setisloading(false)
           toast.success(response.message)
           setTimeout(() => {
-            
+
             navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
           }, 3000);
         })
@@ -198,7 +162,7 @@ const Bookflight = () => {
                   <img src={plane} alt="" />
                 </div>
                 <div>
-                  <input type="date" placeholder='Date' className='inp-frm' onChange={((e)=>setdates(e.target.value))} />
+                  <input type="date" placeholder='Date' className='inp-frm' onChange={((e) => setdates(e.target.value))} />
                 </div>
               </div>
               <div className='frm-div'>
@@ -223,7 +187,7 @@ const Bookflight = () => {
                 <div className='flight-btn'>
                   <button className="flight-btn1" type='button' onClick={post} disable={buttondisabled}>
                     <div className='con-btn'>
-                      <div className='don'>{isloading? "loading..." : "Done"}</div>
+                      <div className='don'>{isloading ? "loading..." : "Done"}</div>
                       <img src={vector} alt="" />
                       <img className='plane-lg' src={plane1} alt="" />
                     </div>
