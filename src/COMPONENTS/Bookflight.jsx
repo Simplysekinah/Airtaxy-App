@@ -44,6 +44,7 @@ const Bookflight = () => {
     // console.log(to);
   }, [from, to])
   const handleDatechange = (event) => {
+    console.log(event.target.value);
     const inputDate = event.target.value
     const currentDate = new Date();
     const yesterday = new Date(currentDate);
@@ -67,30 +68,30 @@ const Bookflight = () => {
   const post = async () => {
     setbuttondisabled(true)
     console.log(from, to);
-    const handleDatechange = (event) => {
-      const inputDate = event.target.value
-      const currentDate = new Date();
-      const yesterday = new Date(currentDate);
-      yesterday.setDate(currentDate.getDate() - 1);
-      if(inputDate){
+    // const handleDatechange = (event) => {
+    //   const inputDate = event.target.value
+    //   const currentDate = new Date();
+    //   const yesterday = new Date(currentDate);
+    //   yesterday.setDate(currentDate.getDate() - 1);
+    //   if(inputDate){
   
-        const [day, month, year] = inputDate.split("-")
-        const pDate = new Date(year, month - 1, day)
-        if (pDate < yesterday) {
-          toast.error('which planets are you from abeg select real date')
-        } else if(pDate > currentDate) {
-          toast.error('my nigga you don receive slap before')
-        }
-        else{
-          toast.success('my nigga lets go there')
-        }
-        setdates(inputDate)
-      }
-    }
+    //     const [day, month, year] = inputDate.split("-")
+    //     const pDate = new Date(year, month - 1, day)
+    //     if (pDate < yesterday) {
+    //       toast.error('which planets are you from abeg select real date')
+    //     } else if(pDate > currentDate) {
+    //       toast.error('my nigga you don receive slap before')
+    //     }
+    //     else{
+    //       toast.success('my nigga lets go there')
+    //     }
+    //     setdates(inputDate)
+    //   }
+    // }
     if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
       toast.error('Fill all inputs')
-    }else if(!handleDatechange()){
-        toast.error('Select a valid date')
+    }else if(dates == new Date()){
+        toast.error('Select a date in the past')
     }
     else {
       try {
@@ -106,7 +107,7 @@ const Bookflight = () => {
               "Content-Type": "application/json"
             }
           }
-        ).then(()=>{
+        ).then((response)=>{
           console.log(response)
           setisloading(false)
           toast.success(response.message)
@@ -197,7 +198,7 @@ const Bookflight = () => {
                   <img src={plane} alt="" />
                 </div>
                 <div>
-                  <input type="date" placeholder='Date' className='inp-frm' onChange={handleDatechange} />
+                  <input type="date" placeholder='Date' className='inp-frm' onChange={((e)=>setdates(e.target.value))} />
                 </div>
               </div>
               <div className='frm-div'>
