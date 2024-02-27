@@ -58,6 +58,9 @@ const Login = () => {
     const forget = () => {
         navigate('/forgetpassword')
     }
+    const signup = () => {
+        navigate('/signup')
+    }
 
     return (
         <>
@@ -94,16 +97,19 @@ const Login = () => {
                                         </div>
                                     </div>
                                     {errors.password && touched.password ? (
-                                                <small className='text-danger'>{errors.password}</small>
-                                            ) : null}
+                                        <small className='text-danger'>{errors.password}</small>
+                                    ) : null}
                                 </div>
                                 <div className='signup-button  mt-5'>
-                                    <Props4 gradient={isloading? "loading..." : "Login up"} gradient1='signup-clk' pass='Submit' disable={buttondisabled} />
+                                    <Props4 gradient={isloading ? "loading..." : "Login up"} gradient1='signup-clk' pass='Submit' disable={buttondisabled} />
                                 </div>
                                 <ToastContainer />
                             </div>
                         </form>
-                        <p className='text-white text-end mt-2' onClick={forget}>Forget Password?</p>
+                        <div className='d-flex align-item-center justify-content-between'>
+                            <p className='text-white  mt-2' onClick={signup}>Don't have an account?</p>
+                            <p className='text-white  mt-2' onClick={forget}>Forget Password?</p>
+                        </div>
                     </div>
                 </div>
             </div>
