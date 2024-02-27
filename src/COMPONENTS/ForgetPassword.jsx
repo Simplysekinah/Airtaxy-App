@@ -11,7 +11,8 @@ import { useNavigate } from 'react-router-dom'
 
 const ForgetPassword = () => {
     const getuser = JSON.parse(localStorage.getItem("userinfo"))
-    // JSON.parse(localStorage.getItem("email"))
+    const [buttondisabled, setbuttondisabled] = useState(false)
+    const [isloading, setisloading] = useState(false)
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/forget"
     const navigate = useNavigate()
 
@@ -25,9 +26,8 @@ const ForgetPassword = () => {
 
         onSubmit: async (values) => {
             console.log(values)
-            // const {email,password}=  values 
-            // const signedupUser = signed.find(e=>e.email === email && e.password === password)
-            // console.log(signedupUser)
+            setbuttondisabled(true)
+            setisloading(true)
             if (values) {
                 axios.post(endpoint, values).then((response) => {
                     console.log(values);
@@ -36,12 +36,14 @@ const ForgetPassword = () => {
                     toast.success(response.data.message)
                     const generatedOtp = response.data.OTP
                     localStorage.setItem('otp', generatedOtp)
+                    setisloading(false)
                     //     localStorage.setItem("userinfo",JSON.stringify(response.data.user) )
                     setTimeout(() => {
                         navigate('/verify')
                     }, 3000);
                 }).catch((error) => {
                     console.log(error)
+                    setisloading(false)
                     toast.error(error.response.data.message)
                 })
             }
@@ -79,7 +81,7 @@ const ForgetPassword = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Props4 gradient='Send' gradient1='signup-clk justify-content-center d-flex' pass='Submit' />
+                            <Props4 gradient={isloading? "loading..." : "Send"} disable={buttondisabled} gradient1='signup-clk justify-content-center d-flex' pass='Submit' />
                             <ToastContainer />
                         </form>
 

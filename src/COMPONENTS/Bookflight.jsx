@@ -6,6 +6,7 @@ import plane1 from '../Images/plane.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import hom from '../Images/hom.png'
 import home from '../Images/home.png'
 import plan from '../Images/plan.png'
@@ -24,6 +25,8 @@ const Bookflight = () => {
   const [classes, setclasses] = useState([])
   const [flights, setflights] = useState(JSON.parse(localStorage.getItem('flightss')) || [])
   const email = localStorage.getItem("email");
+  const [isloading, setisloading] = useState(false)
+  const [buttondisabled, setbuttondisabled] = useState(false)
   const booked = { from, to, dates, passenger, classes }
   const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/bookflight"
   const token = localStorage.getItem("token")
@@ -32,24 +35,66 @@ const Bookflight = () => {
     from: from,
     classes: classes
   }
-
-  const post = async () => {
+  useEffect(() => {
     const inputFrom = from.charAt(0).toUpperCase() + from.slice(1);
     const inputTo = to.charAt(0).toUpperCase() + to.slice(1);
     setfrom(inputFrom)
+    // console.log(from);
     setto(inputTo)
-    if (from !== 'lagos') {
-      toast.error('you can only book flight from lagos')
-    } else if (to !== 'abuja' &&
-      to !== 'dubai' &&
-      to !== 'canada' &&
-      to !== 'united Kingdom' &&
-      to !== 'united State of America') {
-      toast.error('you can only book flight to abuja, dubai, canada, united Kingdom, united State of America')
-    } else if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
+    // console.log(to);
+  }, [from, to])
+  const handleDatechange = (event) => {
+    const inputDate = event.target.value
+    const currentDate = new Date();
+    const yesterday = new Date(currentDate);
+    yesterday.setDate(currentDate.getDate() - 1);
+    if(inputDate){
+
+      const [day, month, year] = inputDate.split("-")
+      const pDate = new Date(year, month - 1, day)
+      if (pDate < yesterday) {
+        toast.error('which planets are you from abeg select real date')
+      } else if(pDate > currentDate) {
+        toast.error('my nigga you don receive slap before')
+      }
+      else{
+        toast.success('my nigga lets go there')
+      }
+      setdates(inputDate)
+    }
+  }
+  
+  const post = async () => {
+    setbuttondisabled(true)
+    console.log(from, to);
+    const handleDatechange = (event) => {
+      const inputDate = event.target.value
+      const currentDate = new Date();
+      const yesterday = new Date(currentDate);
+      yesterday.setDate(currentDate.getDate() - 1);
+      if(inputDate){
+  
+        const [day, month, year] = inputDate.split("-")
+        const pDate = new Date(year, month - 1, day)
+        if (pDate < yesterday) {
+          toast.error('which planets are you from abeg select real date')
+        } else if(pDate > currentDate) {
+          toast.error('my nigga you don receive slap before')
+        }
+        else{
+          toast.success('my nigga lets go there')
+        }
+        setdates(inputDate)
+      }
+    }
+    if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
       toast.error('Fill all inputs')
-    } else {
+    }else if(!handleDatechange()){
+        toast.error('Select a valid date')
+    }
+    else {
       try {
+        setisloading(true)
         console.log(booked);
         console.log(token, "testRam");
         const response = await axios.post(
@@ -61,18 +106,25 @@ const Bookflight = () => {
               "Content-Type": "application/json"
             }
           }
-        )
-        console.log(response)
-        toast.success(response.message)
-        navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
+        ).then(()=>{
+          console.log(response)
+          setisloading(false)
+          toast.success(response.message)
+          setTimeout(() => {
+            
+            navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
+          }, 3000);
+        })
       } catch (error) {
         console.log(error)
+        setisloading(false)
       }
-    }
 
+    }
   }
   useEffect(() => {
     localStorage.setItem('flightss', JSON.stringify(flights))
+    console.log(flights);
   }, [flights])
   const [homd, sethomd] = useState(true)
   const [flightpage, setflightpage] = useState(false)
@@ -94,6 +146,7 @@ const Bookflight = () => {
     { vacationpage ? setvacationpage(false) : setvacationpage(true) }
     // navigate('/')
   }
+
   return (
     <>
       <div className="book-flight">
@@ -144,7 +197,7 @@ const Bookflight = () => {
                   <img src={plane} alt="" />
                 </div>
                 <div>
-                  <input type="date" placeholder='Date' className='inp-frm' onChange={((e) => setdates(e.target.value))} />
+                  <input type="date" placeholder='Date' className='inp-frm' onChange={handleDatechange} />
                 </div>
               </div>
               <div className='frm-div'>
@@ -167,9 +220,9 @@ const Bookflight = () => {
               </div>
               <div className='flights-btns'>
                 <div className='flight-btn'>
-                  <button className="flight-btn1" type='button' onClick={post}>
+                  <button className="flight-btn1" type='button' onClick={post} disable={buttondisabled}>
                     <div className='con-btn'>
-                      <div className='don'>Done</div>
+                      <div className='don'>{isloading? "loading..." : "Done"}</div>
                       <img src={vector} alt="" />
                       <img className='plane-lg' src={plane1} alt="" />
                     </div>
@@ -179,7 +232,7 @@ const Bookflight = () => {
               <ToastContainer />
             </div>
           </div>
-          <div className='bottom-div'>
+          <div className='bottom-div d-flex text-center w-100'>
             <button onClick={first} className='bottom-hold'>
               <img src={homd ? hom : home} alt="" />
             </button>

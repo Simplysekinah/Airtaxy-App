@@ -13,6 +13,8 @@ const Login = () => {
     // const [user, setuser] = useState(JSON.parse(localStorage.getItem("store")) || [])
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/signin"
     const navigate = useNavigate()
+    const [buttondisabled, setbuttondisabled] = useState(false)
+    const [isloading, setisloading] = useState(false)
     const [showing, setShowing] = useState(false);
     const show = () => {
         { showing ? setShowing(false) : setShowing(true) }
@@ -29,12 +31,15 @@ const Login = () => {
         }),
 
         onSubmit: async (values) => {
+            setbuttondisabled(true)
+            setisloading(true)
             if (values) {
                 axios.post(endpoint, values).then((response) => {
                     console.log(values);
                     console.log(response)
                     if (response.data.message) {
                         localStorage.token = response.data.token
+                        setisloading(false)
                         toast.success(response.data.message)
                         localStorage.setItem("userinfo", JSON.stringify(response.data.user))
                         setTimeout(() => {
@@ -43,6 +48,7 @@ const Login = () => {
                     }
                 }).catch((error) => {
                     console.log(error)
+                    setisloading(false)
                     toast.error(error.response.data.message)
                 })
             }
@@ -92,7 +98,7 @@ const Login = () => {
                                             ) : null}
                                 </div>
                                 <div className='signup-button  mt-5'>
-                                    <Props4 gradient='Login up' gradient1='signup-clk' pass='Submit' />
+                                    <Props4 gradient={isloading? "loading..." : "Login up"} gradient1='signup-clk' pass='Submit' disable={buttondisabled} />
                                 </div>
                                 <ToastContainer />
                             </div>

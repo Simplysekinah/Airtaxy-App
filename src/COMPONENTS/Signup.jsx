@@ -10,9 +10,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Signup = () => {
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('')
-    const [user, setuser] = useState('')
+    const [buttondisabled, setbuttondisabled] = useState(false)
+    const [isloading, setisloading] = useState(false)
     const navigate = useNavigate()
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/signup"
     const [showing, setShowing] = useState(false);
@@ -35,15 +34,19 @@ const Signup = () => {
         onSubmit: async (values) => {
             // alert('cool')
             console.log(values)
+            setbuttondisabled(true)
+            setisloading(true)
             if (values) {
                 await axios.post(endpoint, values).then((response) => {
                     console.log(response.data)
+                    setisloading(false)
                     toast.success(response.data.message)
                     setTimeout(() => {
                         navigate('/login')
                     }, 3000);
                 }).catch((error) => {
                     console.log(error)
+                    setisloading(false)
                     toast.error(error.response.data.message)
                 })
             }
@@ -96,7 +99,7 @@ const Signup = () => {
                                     ) : null}
                                 </div>
                                 <div className='signup-button mt-5'>
-                                    <Props4 gradient='Sign up' gradient1='signup-clk' pass='Submit' />
+                                    <Props4 gradient={isloading? "loading..." : "Sign up"} gradient1='signup-clk' pass='Submit' disable={buttondisabled} />
                                 </div>
                                 <div className='text-center mt-5'><Link to='/login' className='login-link'>Already have an Account</Link></div>
                                 <ToastContainer />

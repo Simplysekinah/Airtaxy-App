@@ -25,10 +25,10 @@ const Boarding = () => {
   console.log(qrCodeImage);
   
   const handleprint = ()=>{
-    const all = document.getElementById('print-content')
-    if (all) {
+    const All = document.getElementById('print-content')
+    if (All) {
       const every = document.body.innerHTML
-      document.body.innerHTML = all.innerHTML
+      document.body.innerHTML = All.innerHTML
       window.print()
       document.body.innerHTML = every
     }
@@ -78,10 +78,10 @@ const Boarding = () => {
                 </div>
               </div>
               <hr />
-              <div className='d-flex border border-black p-3 justify-content-evenly align-items-center clas fs-3'>
+              <div className='d-flex border border-black p-3 justify-content-evenly align-items-center clas fs-3 text-black'>
                 <div>
                   <p>Seat</p>
-                  <div>{Booked.seat}</div>
+                  <div>{allBooked?.seatNumber?.number}</div>
                 </div>
                 <div>
                   <p>Class</p>

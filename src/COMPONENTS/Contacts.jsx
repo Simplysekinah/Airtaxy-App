@@ -8,7 +8,7 @@ import * as yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom'
-import {MdOutlineModeEdit} from 'react-icons/md'
+import { MdOutlineModeEdit } from 'react-icons/md'
 import { IoPersonCircleSharp } from "react-icons/io5";
 
 const Contacts = () => {
@@ -21,6 +21,8 @@ const Contacts = () => {
     const [_id, set_id] = useState('')
     const [selectedimage, setselectedimage] = useState('')
     const [profiledefault, setprofiledefault] = useState(false)
+    const [isloading, setisloading] = useState(false)
+    const [buttondisabled, setbuttondisabled] = useState(false)
     // console.log(name,address,passport,dob,country);
     const token = localStorage.token
     const fileInputRef = useRef(null)
@@ -34,14 +36,18 @@ const Contacts = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setselectedimage(reader.result);
+                setprofiledefault(false)
             };
             reader.readAsDataURL(file);
+        }else{
+            setselectedimage('')
+            setprofiledefault(true)
         }
     }
-
-        const handleEditIcon = ()=>{
-            fileInputRef.current.click()
-        }
+    console.log(selectedimage);
+    const handleEditIcon = () => {
+        fileInputRef.current.click()
+    }
     useEffect(() => {
         axios.get(endpoints).then((response) => {
             console.log(response.data.get._id);
@@ -54,6 +60,8 @@ const Contacts = () => {
     const confirm = () => {
         console.log(token);
         console.log(selectedimage);
+        setbuttondisabled(true)
+        setisloading(true)
         axios.post(endpoint,
             { selectedimage, name, address, passport, dob, country, _id },
             {
@@ -65,7 +73,11 @@ const Contacts = () => {
             }
         ).then((response) => {
             console.log(response);
-            navigate('/payment')
+            setisloading(false)
+            setTimeout(() => {
+
+                navigate('/payment')
+            }, 3000);
         })
     }
 
@@ -89,9 +101,9 @@ const Contacts = () => {
                             <div>
                                 <div className='d-flex align-items-center justify-content-center mt-4 position-relative'>
                                     {
-                                        profiledefault?
-                                        <img className='air' src={selectedimage} alt="" />  :
-                                        <IoPersonCircleSharp size={100}/>
+                                        profiledefault ? (
+                                            <IoPersonCircleSharp size={100} /> ):(
+                                            <img className='air' src={selectedimage} alt="defaultimage" />)
                                     }
                                     <div className='position-absolute  editicon' onClick={handleEditIcon}>
                                         <MdOutlineModeEdit size={45} />
@@ -138,7 +150,7 @@ const Contacts = () => {
                                 </div>
                             </div>
                             <div className='signup-button'>
-                                <Props4 gradient='Confirm' gradient1='signup-clk' pass='Submit' onClick={confirm} />
+                                <Props4 gradient={isloading? "loading..." : "Confirm"} gradient1='signup-clk' pass='Submit' onClick={confirm} disable={buttondisabled} />
                             </div>
                             <ToastContainer />
                         </div>

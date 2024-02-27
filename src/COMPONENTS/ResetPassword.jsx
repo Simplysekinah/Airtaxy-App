@@ -13,6 +13,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const ResetPassword = () => {
     const [password, setpassword] = useState('')
     const [Confirm, setConfirm] = useState('')
+    const [buttondisabled, setbuttondisabled] = useState(false)
+    const [isloading, setisloading] = useState(false)
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/reset"
     const navigate = useNavigate()
     const [showing, setShowing] = useState(false);
@@ -41,11 +43,14 @@ const ResetPassword = () => {
             axios.post(endpoint, obj).then((response) => {
                 console.log(response)
                 toast.success(response.data.message)
+                setbuttondisabled(true)
+                setisloading(true)
                 setTimeout(() => {
                     navigate('/login')
                 }, 3000);
             }).catch((error) => {
                 console.log(error)
+                setisloading(false)
                 toast.error(error.response.data.message)
             })
         }
@@ -127,13 +132,13 @@ const ResetPassword = () => {
                                     <input className={errors.password ? 'input1 form-control' : 'input1'} type={showing ? "password" : "text"} name='password' onChange={((e) => setConfirm(e.target.value))} onBlur={handleBlur} />
                                     <button className='show-pass' type='button' onClick={show}>{showing ? <FaEyeSlash /> : <FaEye />}</button>
                                     {/* <button className='show-pass' type='button' onClick={() => setShowing(!showing)}>{showing ? <FaEyeSlash /> : <FaEye />}</button> */}
-                                </div>                            
+                                </div>
                             </div>
                             {errors.password && touched.password ? (
-                                        <small className='text-danger d-flex justify-content-center'>{errors.password}</small>
-                                    ) : null}
+                                <small className='text-danger d-flex justify-content-center'>{errors.password}</small>
+                            ) : null}
                         </div>
-                        <Props4 gradient='Reset' onClick={reset} gradient1='signup-clk justify-content-center d-flex' />
+                        <Props4 gradient={isloading? "loading..." : "Reset"} disable={buttondisabled} onClick={reset} gradient1='signup-clk justify-content-center d-flex' />
                         <ToastContainer />
                         <div className='d-flex blg justify-content-center'>
                             <div className='text-white'>Back to</div>

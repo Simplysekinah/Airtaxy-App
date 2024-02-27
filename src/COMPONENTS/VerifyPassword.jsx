@@ -10,36 +10,44 @@ import { ToastContainer, toast } from 'react-toastify'
 const VerifyPassword = () => {
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/verify"
     const navigate = useNavigate()
+    const [buttondisabled, setbuttondisabled] = useState(false)
+    const [isloading, setisloading] = useState(false)
     const [otp, setotp] = useState(['', '', '', ''])
     const inputRef = useRef([null, null, null, null])
-    const generatedOtp =    localStorage.getItem('otp' || '')
+    const generatedOtp = localStorage.getItem('otp' || '')
 
     useEffect(() => {
         inputRef.current[0].focus();
-      }, []);
-    
-      const HandleInputChange = (index, event) => {
+    }, []);
+
+    const HandleInputChange = (index, event) => {
         const value = event.target.value;
         const UpdatedOtp = [...otp];
         UpdatedOtp[index] = value;
         setotp(UpdatedOtp);
-    
+
         if (value !== '' && index < otp.length - 1) {
-          inputRef.current[index + 1].focus();
+            inputRef.current[index + 1].focus();
         }
-      };
+    };
 
 
-      const verify = ()=>{
-         const fullOtp = otp.join("")
-         console.log(fullOtp);
-         if (fullOtp === generatedOtp) {
-            navigate('/reset')
-         }
-         else{
+    const verify = () => {
+        setbuttondisabled(true)
+        setisloading(true)
+        const fullOtp = otp.join("")
+        console.log(fullOtp);
+        if (fullOtp === generatedOtp) {
+            setTimeout(() => {
+                
+                navigate('/reset')
+            }, timeout);
+        }
+        else {
             toast.error('bad')
-         }
-      }
+            setisloading(false)
+        }
+    }
 
     return (
         <>
@@ -80,7 +88,7 @@ const VerifyPassword = () => {
                             <div className='text-white'>If you didn't receive a code!</div>
                             <div className='log'>Resend it</div>
                         </div>
-                        <Props4 onClick={verify} gradient='Verify' gradient1='signup-clk justify-content-center d-flex mt-5' />
+                        <Props4 onClick={verify} gradient={isloading? "loading..." : "Verify"} disable={buttondisabled} gradient1='signup-clk justify-content-center d-flex mt-5' />
                         <div className='d-flex blg justify-content-center mt-3'>
                             <div className='text-white'>Back to</div>
                             <div className='log'>Login</div>
@@ -88,7 +96,7 @@ const VerifyPassword = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </>
     )
 }

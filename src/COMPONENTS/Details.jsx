@@ -18,6 +18,8 @@ const Details = () => {
     const dispatch = useDispatch()
     const [sum, setsum] = useState([])
     const [check, setcheck] = useState({})
+    const [isloading, setisloading] = useState(false)
+    const [buttondisabled, setbuttondisabled] = useState(false)
     const flight = JSON.parse(localStorage.getItem('flightss'))
     console.log(flight);
     const { allBooked, isBooking, bookError } = useSelector((state) => state.book)
@@ -76,6 +78,9 @@ const Details = () => {
     //     })
     // }, [])
     const cancel = (element) => {
+        setbuttondisabled(true)
+        setisloading(true)
+        console.log(element);
         console.log(element._id);
         setupid(element._id);
         console.log(upid);
@@ -89,15 +94,25 @@ const Details = () => {
                 }
             }).then((response) => {
                 console.log(response)
+                setisloading(false)
                 toast.success(response.data.message)
-                navigate('/book')
+                setTimeout(() => {
+
+                    navigate('/book')
+                }, 3000);
             }).catch((error) => {
                 console.log(error)
+                setisloading(false)
             })
     }
 
     const confirm = () => {
-        navigate('/seat')
+        setbuttondisabled(true)
+            setisloading(true)
+        setTimeout(() => {
+            navigate('/seat')
+
+        }, 3000);
     }
 
     return (
@@ -159,7 +174,7 @@ const Details = () => {
                                         {/* <button className='cancel' onClick={() => cancel(allBooked)}>Cancel</button> */}
                                         <div className='flights-btns'>
                                             <div className='flight-btns'>
-                                                <button className="flight-btn1" type='button' onClick={() => cancel(allBooked)}>
+                                                <button className="flight-btn1" type='button' onClick={() => cancel(allBooked)} disable={buttondisabled}>
                                                     <div className='con-btn'>
                                                         <div className='don'>Done</div>
                                                         <img className='vect' src={vector} alt="" />
@@ -169,7 +184,7 @@ const Details = () => {
                                             </div>
                                         </div>
                                         {/* <button className='cancels' onClick={confirm}>Confirm</button> */}
-                                        <Props4 gradient='Confirm' gradient1='continue-clk' onClick={confirm} pass='Submit' />
+                                        <Props4 gradient='Confirm' gradient1='continue-clk' onClick={confirm} pass='Submit' disable={buttondisabled} />
                                     </div>
                                     <ToastContainer />
                                 </div>
