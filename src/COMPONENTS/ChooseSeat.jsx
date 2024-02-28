@@ -86,9 +86,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     1
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -96,9 +97,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     2
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -106,9 +108,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     3
                   </button>
                 </div>
@@ -118,9 +121,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     4
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -128,9 +132,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     5
                   </button>
                 </div>
@@ -140,9 +145,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     6
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -150,9 +156,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     7
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -160,9 +167,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     8
                   </button>
                 </div>
@@ -172,9 +180,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     9
                   </button>
                   <button className={click ? 'one' : 'same'}
@@ -182,9 +191,10 @@ const ChooseSeat = () => {
                     onClick={(event) => {
                       handleclick(event)
                       setcode(event.target.value)
+                      setclick(true)
                     }
                     }
-                    disable={buttondisabled} >
+                    disable={click || buttondisabled} >
                     10
                   </button>
                 </div>
