@@ -48,7 +48,7 @@ const Bookflight = () => {
     setbuttondisabled(true)
     const dateObject = new Date(dates);
     const timestamp = dateObject.getTime();
-
+    console.log(from);
     if (from == "" || to == "" || dates == "" || passenger == "" || classes == "") {
       toast.error('Fill all inputs')
 
@@ -71,18 +71,26 @@ const Bookflight = () => {
               "Content-Type": "application/json"
             }
           }
-        ).then((response)=>{
-          console.log(response)
-          setisloading(false)
-          toast.success(response.message)
-          setTimeout(() => {
+        ).then((response) => {
+          if (response.status === 200 && response.data.status === true) {
 
-            navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
-          }, 3000);
+            console.log(response.data)
+            setisloading(false)
+            toast.success(response.data.message)
+            setTimeout(() => {
+
+              navigate(`/flightdetails/${loc.to}/${loc.from}/${loc.classes}`)
+            }, 3000);
+          } else {
+            toast.error(response.data.message);
+            setisloading(false);
+          }
         })
       } catch (error) {
         console.log(error)
+        toast.error(error.message)
         setisloading(false)
+
       }
 
     }
