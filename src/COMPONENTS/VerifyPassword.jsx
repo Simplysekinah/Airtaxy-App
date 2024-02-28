@@ -41,7 +41,7 @@ const VerifyPassword = () => {
             setTimeout(() => {
                 
                 navigate('/reset')
-            }, timeout);
+            }, [3000]);
         }
         else {
             toast.error('bad')

@@ -32,6 +32,7 @@ const HomePage = () => {
     const [flightpage, setflightpage] = useState(true)
     const [hotelpage, sethotelpage] = useState(true)
     const [vacationpage, setvacationpage] = useState(true)
+    const [profilepicture, setprofilepicture] = useState('')
     const first =()=>{
         {homd? sethomd(true):sethomd(false)}
         navigate('/home')
@@ -52,6 +53,7 @@ const HomePage = () => {
     const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/getimage"
     const endpoint1 = "https://airtaxy-app-backend.onrender.com/airtaxy/admin/hotelimage"
     const endpoint2 = "https://airtaxy-app-backend.onrender.com/airtaxy/token"
+    const endpoint3 = "https://airtaxy-app-backend.onrender.com/airtaxy/getuser"
     let informs = JSON.parse(localStorage.getItem("userinfo"))
     // console.log(informs);
     // console.log(informs.email);
@@ -75,7 +77,14 @@ const HomePage = () => {
             console.log(error);
         })
     }, [])
-
+    useEffect(() => {
+      axios.get(endpoint3).then((response)=>{
+        console.log(response.data);
+        setprofilepicture(response.data.personal)
+        console.log(response.data.personal);
+      })
+    }, [third])
+    
     useEffect(() => {
         axios.get(endpoint).then((response) => {
             console.log(response.message)
