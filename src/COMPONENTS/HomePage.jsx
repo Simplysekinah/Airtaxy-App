@@ -17,6 +17,7 @@ import hote from '../Images/hote.png'
 import hotel from '../Images/hotel.png'
 import vacatio from '../Images/vacatio.png'
 import vacation1 from '../Images/vacation1.png'
+import { IoPersonCircleSharp } from "react-icons/io5";
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -80,10 +81,10 @@ const HomePage = () => {
     useEffect(() => {
       axios.get(endpoint3).then((response)=>{
         console.log(response.data);
-        setprofilepicture(response.data.personal)
-        console.log(response.data.personal);
+        // setprofilepicture(response.data.personal)
+         setprofilepicture(response.data.get);
       })
-    }, [third])
+    }, [])
     
     useEffect(() => {
         axios.get(endpoint).then((response) => {
@@ -137,7 +138,19 @@ const HomePage = () => {
                 <div className='thirdpage-one'>
                     <div className='container-fluid home-up'>
                         <div>
-                            <img className='air' src={air} alt="" />
+                            {profilepicture ? 
+                               ( 
+                                <>
+                                    {profilepicture.personalInformation.map((element, index) => (
+                                        <img key={index} className='air' src={element.selectedimage} alt="" />
+                                    ))}
+                                </>
+                            ) :
+                            (
+                                <IoPersonCircleSharp className='air' />
+                            )
+
+                            }
                         </div>
                         <div>
                             <img src={logo} alt="" />
@@ -200,7 +213,9 @@ const HomePage = () => {
                         <div className='middle'>
                             <div className='middle-p'>The journey of a thousand miles begins with a single step.  </div>
                             <div className=''>
-                                <img src={leg} alt="" />
+                                
+                                        <img src={leg} alt="" />
+                                
                             </div>
                         </div>
                     </div>

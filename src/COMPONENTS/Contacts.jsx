@@ -28,7 +28,7 @@ const Contacts = () => {
     const fileInputRef = useRef(null)
 
     const endpoints = "https://airtaxy-app-backend.onrender.com/airtaxy/getuser"
-    const endpoint = "https://airtaxy-app-backend.onrender.com/airtaxy/personalinformation"
+    const endpoint = "http://airtaxy-app-backend.onrender.com/airtaxy/personalinformation"
 
     const handleimagechange = (event) => {
         const file = event.target.files[0];
