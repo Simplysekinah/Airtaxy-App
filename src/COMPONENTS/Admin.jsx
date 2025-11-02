@@ -140,7 +140,7 @@ const Admin = () => {
                                     console.log(e.target.checked)
                                 }}
                             />
-                            <label class="form-check-label" for="flexSwitchCheckChecked">First Class</label>
+                            <label className="form-check-label" for="flexSwitchCheckChecked">First Class</label>
                         </div>
                     </div>
                     {
